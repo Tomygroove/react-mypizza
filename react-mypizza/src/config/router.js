@@ -10,6 +10,7 @@ import {
 import Login from '../screens/login'
 import Home from '../screens/home'
 import Pizzas from '../screens/pizzas'
+import Pizza from '../screens/pizza'
 import Configurator from '../screens/configurator'
 
 const Routes = () => {
@@ -19,7 +20,7 @@ const Routes = () => {
                 <Route exact path="/" component={Login} />
                 <Route path="/home" component={Home} />
                 <Route path="/pizzas" component={Pizzas} />
-                <Route path="/pizza/{id}" component={Home} />
+                <Route path="/pizza" component={Pizza} />
                 <Route path="/configurator" component={Configurator} />
                 <Redirect to="/home" ></Redirect>
             </Switch>
