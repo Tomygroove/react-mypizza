@@ -1,12 +1,29 @@
-import React from 'react';
-import data from '../../assets/data/pizzas.json'
-import styled from "styled-components";
+import React, {useState, useEffect} from 'react'
+import styled from 'styled-components'
+import {useDispatch} from 'react-redux'
+import {addToCart} from '../../actions/cart'
+import {connect} from 'react-redux'
 
-const PizzaList = () => {
-    console.log(data)
+const PizzaList = ({pizzas, cart}) => {
+    const dispatch = useDispatch()
+    const addToCartBtn = (id) => {
+        dispatch(addToCart(id))
+    }
+
+
+    const [cartCount, setCartCount] = useState(0)
+    useEffect(() => {
+        let count = 0;
+        cart.forEach(item => {
+            count += item.qty;
+        })
+        setCartCount(count)
+    }, [cart, cartCount])
+
     return (
-        <Wrapper>
-            {data.map((pizza, index) => { 
+        <Wrapper>  
+            <p>Panier : {cartCount}</p>
+            {pizzas.map((pizza, index) => { 
                 return (
                 <ListContainer>
                     <WrapperImg src={pizza.image} width='100px' />    
@@ -14,14 +31,24 @@ const PizzaList = () => {
                     <PizzaTittle>{pizza.name}</PizzaTittle>
                     <Desc>{pizza.description}</Desc>
                     <Price>{pizza.price}€</Price>
-                    </TittleDesc> 
-                    <button>Ajouter</button>
+                    </TittleDesc>
+                    <button onClick={() => addToCartBtn(pizza.id)}>Ajouter</button>          
                 </ListContainer>
                 ) 
             })}
         </Wrapper>
     );
 };
+
+
+const mapStateToProps = state => {
+    return {
+        pizzas: state.shopCart.pizzas,
+        cart: state.shopCart.cart
+    }
+}
+
+
 const Wrapper = styled.div`
 display: flex;
 flex-direction: column;
@@ -68,4 +95,4 @@ overflow: hidden;
 
 
 
-export default PizzaList;
+export default connect (mapStateToProps)(PizzaList);
