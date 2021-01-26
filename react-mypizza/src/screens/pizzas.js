@@ -1,4 +1,6 @@
 import React from 'react';
+
+
 import styled from 'styled-components'
 import PizzaList from '../components/pizzalist'
 
@@ -8,6 +10,7 @@ const Pizzas = () => {
             <Tittle>Liste des Pizzas</Tittle>
             <PizzaList></PizzaList>
         </Container>
+
     );
 };
 
