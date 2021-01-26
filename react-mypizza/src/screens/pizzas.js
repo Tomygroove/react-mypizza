@@ -1,10 +1,9 @@
 import React from 'react';
+import CartList from '../components/CartList'
 
 const Pizzas = () => {
     return (
-        <div>
-            <p>Liste des Pizzas</p>
-        </div>
+        <CartList></CartList>
     );
 };
 

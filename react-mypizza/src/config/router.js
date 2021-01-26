@@ -11,6 +11,7 @@ import Login from '../screens/login'
 import Home from '../screens/home'
 import Pizzas from '../screens/pizzas'
 import Configurator from '../screens/configurator'
+import Cart from '../screens/cart'
 
 const Routes = () => {
     return (
@@ -21,6 +22,7 @@ const Routes = () => {
                 <Route path="/pizzas" component={Pizzas} />
                 <Route path="/pizza/{id}" component={Home} />
                 <Route path="/configurator" component={Configurator} />
+                <Route path="/cart" component={Cart} />
                 <Redirect to="/home" ></Redirect>
             </Switch>
         </Router>
