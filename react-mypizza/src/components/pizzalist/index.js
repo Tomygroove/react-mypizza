@@ -5,25 +5,19 @@ import {addToCart, fetchPizzas, cart} from '../../actions/cart'
 import {connect} from 'react-redux'
 
 
-const PizzaList = ({pizzas, fetchPizzas, cart}) => {
+const PizzaList = ({pizzas, fetchPizzas}) => {
 
-
-    
-    const dispatch = useDispatch()
-    const addToCartBtn = (id) => {
-        dispatch(addToCart(id))
-    }
 
     
     const [cartCount, setCartCount] = useState(0)
+    const dispatch = useDispatch()
+    const addToCartBtn = (id) => {
+        dispatch(addToCart(id))
+        setCartCount(cartCount+1)
+    }
     useEffect(() => {
         fetchPizzas()
-        let count = 0;
-        cart.forEach(item => {
-            count += item.qty;
-        })
-        setCartCount(count)
-    }, [cart, cartCount])
+    }, [])
 
     return (
         <Wrapper>  
