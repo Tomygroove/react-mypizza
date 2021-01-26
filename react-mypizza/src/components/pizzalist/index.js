@@ -1,18 +1,23 @@
 import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import {useDispatch} from 'react-redux'
-import {addToCart} from '../../actions/cart'
+import {addToCart, fetchPizzas, cart} from '../../actions/cart'
 import {connect} from 'react-redux'
 
-const PizzaList = ({pizzas, cart}) => {
+
+const PizzaList = ({pizzas, fetchPizzas, cart}) => {
+
+
+    
     const dispatch = useDispatch()
     const addToCartBtn = (id) => {
         dispatch(addToCart(id))
     }
 
-
+    
     const [cartCount, setCartCount] = useState(0)
     useEffect(() => {
+        fetchPizzas()
         let count = 0;
         cart.forEach(item => {
             count += item.qty;
@@ -45,6 +50,12 @@ const mapStateToProps = state => {
     return {
         pizzas: state.shopCart.pizzas,
         cart: state.shopCart.cart
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchPizzas: () => dispatch(fetchPizzas())
     }
 }
 
@@ -95,4 +106,4 @@ overflow: hidden;
 
 
 
-export default connect (mapStateToProps)(PizzaList);
+export default connect (mapStateToProps,mapDispatchToProps)(PizzaList);
