@@ -23,8 +23,11 @@ const PizzaList = ({pizzas, fetchPizzas}) => {
     return (
         <Wrapper>
             <WrapperCart>
-            <Image/> 
+            <GoCart href="/cart">
+            <Image></Image>
             <Counter>{cartCount}</Counter>
+            </GoCart>
+            
             </WrapperCart>
            
             {pizzas.map((pizza, index) => {
@@ -83,16 +86,20 @@ const WrapperCart = styled.div `
 max-width: 100%;
 height: 80px;
 `
+const GoCart = styled.a `
+text-decoration: none;
+`
+
 const Image = styled.p `
 background-image:url(${bgimg});
 width: 60px;
 height: 72px;
- 
  background-repeat: no-repeat;
  background-size: cover;
  float: left;
     margin-right: 10px;
     clear:both;
+  
 `
 const Counter = styled.h3`
 font-family: Takeaway Sans,Avant Garde,Century Gothic,Helvetica,Arial,sans-serif;
@@ -102,6 +109,8 @@ line-height: 1.22;
 color: #0a3847;
 position: relative;
 top: 25px;
+max-width: 85px;
+
 `
 
 const Wrapper = styled.div`
