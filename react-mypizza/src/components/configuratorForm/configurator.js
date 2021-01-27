@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import styled from 'styled-components'
 import { Link } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux'
-import {Nextstep} from '../../actions/stepper'
+import {Nextstep, DeleteIngredients} from '../../actions/stepper'
 import base1 from '../../assets/images/base1.png'
 
 const ConfiguratorRecap = () => {
@@ -10,8 +10,14 @@ const ConfiguratorRecap = () => {
     const dispatch = useDispatch()
     const SizeBasket = useSelector(state=>state.step.SizeBasket)
     const BaseListe = useSelector(state=>state.step.BaseListi)
-    console.log ( BaseListe )
+    const IngredientsListeBasket = useSelector(state=>state.step.IngredientsBasket)
+    
+    const DeleteIngredient=(e,id)=>{
 
+        dispatch(DeleteIngredients(id))
+    }
+    
+    
     return(
         <>
                 <div>
@@ -37,29 +43,15 @@ const ConfiguratorRecap = () => {
                                      <Etape_New>
                                          <Label_new>Ingredients choisis</Label_new>
                                          <IngredientsChoisi>
-                                            
-                                            <IngredientsLi>
-                                            <ImgSize src={base1}></ImgSize>
-                                            </IngredientsLi>
-
-                                            <IngredientsLi>
-                                             <ImgSize src={base1}></ImgSize>
-                                             </IngredientsLi>
-
-                                             <IngredientsLi>
-                                             <ImgSize src={base1}></ImgSize>
-                                             </IngredientsLi>
-
-                                             <IngredientsLi>
-                                             <ImgSize src={base1}></ImgSize>
-                                             </IngredientsLi>
-
-                                             <IngredientsLi>
-                                             <ImgSize src={base1}></ImgSize>
-                                             </IngredientsLi>
-                                             
-                                             
-                                        
+                                            <Recap_ul >
+                                            {
+                                                IngredientsListeBasket.map(ing=>
+                                                    <IngredientsLi key={ing.id}>
+                                                         <ImgSize src={ing.value.img}  onClick={(e)=> {DeleteIngredient(e,ing.id)}}></ImgSize>
+                                                     </IngredientsLi>
+                                                )
+                                            }
+                                            </Recap_ul>
                                          </IngredientsChoisi>
                                      </Etape_New>
                                 </Row>
@@ -111,9 +103,13 @@ const Recap_ul = styled.ul`
     line-height: 1em;
     font-weight: 500;
     line-height: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 12px 0px 12px 0px;
 `
 const ImgSize = styled.img`
-    height: 36px;
+    height: 50px;
     margin-top: -36px;
     position: relative;
     top: 16px;

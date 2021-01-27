@@ -15,7 +15,6 @@ const Selesizestepper = ()=>{
     const SelectSize = (e,size)=>{
         
         const sizevalue = size.name +" "+ size.size;
-        alert( sizevalue )
         dispatch(Updatesize(sizevalue))
         dispatch(Nextstep(2))
         

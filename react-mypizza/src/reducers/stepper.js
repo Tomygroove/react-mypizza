@@ -1,5 +1,5 @@
 import { CURRENT_STEP } from "../actions/stepper";
-import { CH_BASE, SET_INGREDIENT,CH_SIZE } from "../actions/stepper";
+import { CH_BASE, SET_INGREDIENT,CH_SIZE,DELETEINGREDIENTS } from "../actions/stepper";
 import {IngredientsListe} from "../assets/data/Ingredients"
 import {Pizzasize} from "../assets/data/Pizzasize"
 import {BaseListe} from "../assets/data/base"
@@ -21,6 +21,12 @@ const initialState = {
 
 }
 
+const DeletTodo=(List,payload)=>{
+    const NewList = List.filter(elt=>elt.id!==payload.Id)
+    return NewList
+}
+
+
 export default (state = initialState, action) => {
     switch(action.type){
         case CURRENT_STEP:
@@ -35,8 +41,9 @@ export default (state = initialState, action) => {
         case CH_BASE:
             return {...state,BaseListi:action.payload.base }
         case SET_INGREDIENT:
-            return {...state,SizeBasket:action.payload.PizzaSize }
-
+            return {...state,IngredientsBasket:[...state.IngredientsBasket,action.payload.Ingredients] }
+        case DELETEINGREDIENTS:
+            return {...state,IngredientsBasket:DeletTodo(state.IngredientsBasket,action.payload)}
             default:
                 return state
     }

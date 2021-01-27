@@ -3,7 +3,8 @@ import styled from "styled-components"
 import base1 from '../../assets/images/base1.png'
 import base2 from '../../assets/images/base2.png'
 import {useDispatch, useSelector} from 'react-redux'
-import {Nextstep} from '../../actions/stepper'
+import {Nextstep,SetIngredients} from '../../actions/stepper'
+import { uid } from 'uid';
 
 
 
@@ -12,9 +13,14 @@ const SelectIngredients = ()=>{
     const dispatch = useDispatch()
     const First = useSelector(state=>state.step.First_step)
     const IngredientsListes = useSelector(state=>state.step.IngredientsListes)
-
-    const SelectIngredient = (e)=>{
-     dispatch(Nextstep(2))
+    
+    
+    const SelectIngredient = (e,ingredienti)=>{
+        const ingredient ={
+            id:uid(),
+            value:ingredienti
+        }
+     dispatch(SetIngredients(ingredient))
     }
      
     const Previous = (e)=>{
@@ -31,7 +37,7 @@ const SelectIngredients = ()=>{
                         <Config_slide_title><span onClick={(e)=>Previous(e)}>back</span>3. Je choisis mes ingredients</Config_slide_title>
                         {
                             IngredientsListes.map(ingredient=>
-                        <Item onClick={(e)=>SelectIngredient(e)}>
+                        <Item onClick={(e)=>SelectIngredient(e,ingredient)}>
                             <Item_large>
                                 <Icone>ingredient.name</Icone>
                                 <Item_image src={ingredient.img}/>
@@ -90,6 +96,7 @@ const Config_slide_title = styled.li`
     box-shadow: 0px 5px 0px 0px #d0d0d0;
     margin: 0 30px 30px;
     width:200px;
+    padding: 2px 0px 21px 0px;
  `
 
 const Item_large = styled.a`
