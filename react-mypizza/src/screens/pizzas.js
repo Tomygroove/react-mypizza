@@ -1,21 +1,36 @@
 import React from 'react';
-
-
 import styled from 'styled-components'
 import PizzaList from '../components/pizzalist'
+import bgimg from "../assets/images/pizzaback.PNG";
+
 
 const Pizzas = () => {
     return (
         <Container>
-            <Tittle>Liste des Pizzas</Tittle>
+            <WrapperHeader>
+            <Image/>
+            </WrapperHeader>
             <PizzaList></PizzaList>
         </Container>
-
     );
 };
 
-const Tittle = styled.h1 `
-    color:black;
+const WrapperHeader = styled.div `
+width: 1185px;
+height:200px;
+display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+`
+
+const Image = styled.img `
+background-image:url(${bgimg});
+width: 100%; 
+ height:250px; 
+ 
+ background-repeat: no-repeat;
+ background-size: cover;
 `
 
 const Container = styled.div `
@@ -23,6 +38,7 @@ const Container = styled.div `
     justify-content: center;
     flex-direction: column;
     align-items: center;
+
 `
 
 
