@@ -1,38 +1,67 @@
 import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import {useDispatch} from 'react-redux'
-import {addToCart} from '../../actions/cart'
+import {addToCart, fetchPizzas, cart} from '../../actions/cart'
 import {connect} from 'react-redux'
+import bgimg from "../../assets/images/cart.PNG";
 
-const PizzaList = ({pizzas, cart}) => {
+
+const PizzaList = ({pizzas, fetchPizzas}) => {
+
+    
+    
+    const [cartCount, setCartCount] = useState(0)
     const dispatch = useDispatch()
     const addToCartBtn = (id) => {
         dispatch(addToCart(id))
+        setCartCount(cartCount+1)
     }
-
-
-    const [cartCount, setCartCount] = useState(0)
     useEffect(() => {
-        let count = 0;
-        cart.forEach(item => {
-            count += item.qty;
-        })
-        setCartCount(count)
-    }, [cart, cartCount])
+        fetchPizzas()
+    }, [])
 
     return (
-        <Wrapper>  
-            <p>Panier : {cartCount}</p>
-            {pizzas.map((pizza, index) => { 
+        <Wrapper>
+            <WrapperCart>
+            <GoCart href="/cart">
+            <Image></Image>
+            <Counter>{cartCount}</Counter>
+            </GoCart>
+            
+            </WrapperCart>
+           
+            {pizzas.map((pizza, index) => {
+                const data = pizza
+                const getValueByKey = (key, data) => {
+                    var i, len = data.length;
+                    
+                    for (i = 0; i < len; i++) {
+                        if (data[i] && data[i].hasOwnProperty(key)) {
+                            return data[i][key];
+                        }
+                    }
+                    
+                    return -1;
+                }
+                console.log(getValueByKey('src', pizza.images));
+                console.log(pizza.id)
+                const image = getValueByKey('src', pizza.images);
+                const desc = pizza.description
+                const description = desc.replace('<p>','').replace('</p>', '')
+
                 return (
                 <ListContainer>
-                    <WrapperImg src={pizza.image} width='100px' />    
+                    
+                    <WrapperImg src={image} />    
                     <TittleDesc>  
                     <PizzaTittle>{pizza.name}</PizzaTittle>
-                    <Desc>{pizza.description}</Desc>
+                    <Desc>{description}</Desc>
                     <Price>{pizza.price}€</Price>
                     </TittleDesc>
-                    <button onClick={() => addToCartBtn(pizza.id)}>Ajouter</button>          
+                    <WrapperButton>
+                    <Button onClick={() => addToCartBtn(pizza.id)}>+</Button>   
+                    </WrapperButton>
+                           
                 </ListContainer>
                 ) 
             })}
@@ -48,14 +77,63 @@ const mapStateToProps = state => {
     }
 }
 
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchPizzas: () => dispatch(fetchPizzas())
+    }
+}
+const WrapperCart = styled.div `
+max-width: 100%;
+height: 80px;
+`
+const GoCart = styled.a `
+text-decoration: none;
+`
+
+const Image = styled.p `
+background-image:url(${bgimg});
+width: 60px;
+height: 72px;
+ background-repeat: no-repeat;
+ background-size: cover;
+ float: left;
+    margin-right: 10px;
+    clear:both;
+  
+`
+const Counter = styled.h3`
+font-family: Takeaway Sans,Avant Garde,Century Gothic,Helvetica,Arial,sans-serif;
+font-weight: 600;
+font-size: 18px;
+line-height: 1.22;
+color: #0a3847;
+position: relative;
+top: 25px;
+max-width: 85px;
+
+`
 
 const Wrapper = styled.div`
 display: flex;
 flex-direction: column;
+background: 
 `
+const WrapperButton = styled.div`
+display: flex;
+flex-direction: column;
+`
+const Button = styled.button`
+align-self: flex-end;
+font-weight: bold;
+font-size:20px;
+border: 2px solid #ebebeb;
+cursor: pointer;
+`
+
 const WrapperImg = styled.img`
 margin: 35px 20px 0px 10px;
 float: left;
+width: 100px;
 `
 const PizzaTittle = styled.h3`
 font-family: Takeaway Sans,Avant Garde,Century Gothic,Helvetica,Arial,sans-serif;
@@ -66,7 +144,7 @@ color: #0a3847;
 margin-bottom: 5px;
 `
 const Desc = styled.p`
-font-family: Takeaway Sans,Avant Garde,Century Gothic,Helvetica,Arial,sans-serif;
+font-family: Comic Sans MS, Comic Sans, cursive;
 font-weight: 400;
 font-size: 14px;
 color: #666;
@@ -88,11 +166,12 @@ const TittleDesc = styled.div`
 `
 
 const ListContainer= styled.div`
-width-max:100%;
-border: 4px solid red;
-overflow: hidden;
+border: 2px solid #ebebeb;
+border-radius: 2px;
+margin: 8px 0;
+position: relative;
 `
 
 
 
-export default connect (mapStateToProps)(PizzaList);
+export default connect (mapStateToProps,mapDispatchToProps)(PizzaList);
