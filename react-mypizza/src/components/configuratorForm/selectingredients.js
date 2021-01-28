@@ -42,9 +42,7 @@ const SelectIngredients = ()=>{
                                 <Icone>ingredient.name</Icone>
                                 <Item_image src={ingredient.img}/>
                                 <Zone_texte>
-                                <Texte>
-                                { ingredient.name }
-                                </Texte>
+                                    <Texte>{ ingredient.name }</Texte>
                                 </Zone_texte>
                             </Item_large>
                         </Item>
@@ -72,11 +70,11 @@ const ConfigTaille = styled.ul`
     margin: 0;
     list-style: none;
     list-style-type: none;
-    width: 100%;
     top: 0;
     display:flex;
     flex-wrap:wrap;
-    ustify-content: center;
+    padding:0px;
+    justify-content: center;
     `
 const Config_slide_title = styled.li`
     color: #6e626c;
@@ -84,7 +82,6 @@ const Config_slide_title = styled.li`
     font-weight: 500;
     margin-bottom: 30px;
     text-align: center;
-    padding: 0px 50px 0 50px;
     position: relative;
     line-height: 32px;
     width:100%;
@@ -93,10 +90,8 @@ const Config_slide_title = styled.li`
     background: #f0f0f0;
     vertical-align: top;
     border-radius: 20px;
-    box-shadow: 0px 5px 0px 0px #d0d0d0;
-    margin: 0 30px 30px;
-    width:200px;
-    padding: 2px 0px 21px 0px;
+    margin: 0 10px 10px;
+    width: 40%;
  `
 
 const Item_large = styled.a`
@@ -158,8 +153,6 @@ height: auto;
 line-height: 20px;
 color: #6e626c;
 `
-
-
 
 
 

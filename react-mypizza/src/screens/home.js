@@ -32,8 +32,8 @@ const Home = () => {
 }
 
 const MainContainer = styled.div`
-    display: grid;
-    grid-template-columns: 50% auto;
+    display: flex;
+    flex-wrap: wrap;
 `
 
 

@@ -56,7 +56,12 @@ const ConfiguratorRecap = () => {
                                      </Etape_New>
                                 </Row>
                                 <Row>
-                                     <Etape_New>vvvvvvvvvvv</Etape_New>
+                                     <Etape_New>
+                                     <Label_new>Nom de la pizza</Label_new>
+                                     <br></br>
+
+                                         <PizzaName></PizzaName>
+                                     </Etape_New>
                                 </Row>
                             </Recap>
                         </form>
@@ -70,6 +75,7 @@ const ConfiguratorRecap = () => {
 const Recap = styled.div`
     margin:0;
     padding:0;
+    display: block;
 `
 
 const Row = styled.div`
@@ -127,6 +133,15 @@ margin: 10px 1%;
 text-align: center;
 `
 
+
+
+const PizzaName = styled.input`
+       background:red;
+        border: none;
+        border-radius: 10px;
+        margin: 5px 0 0 0;
+        display: inline-block;
+`
 
 export default ConfiguratorRecap
            

@@ -62,7 +62,8 @@ const ConfigTaille = styled.ul`
     top: 0;
     display:flex;
     flex-wrap:wrap;
-    ustify-content: center;
+    justify-content: center;
+    padding:0;
     `
 const Config_slide_title = styled.li`
     color: #6e626c;
@@ -70,7 +71,6 @@ const Config_slide_title = styled.li`
     font-weight: 500;
     margin-bottom: 30px;
     text-align: center;
-    padding: 0px 50px 0 50px;
     position: relative;
     line-height: 32px;
     width:100%;
