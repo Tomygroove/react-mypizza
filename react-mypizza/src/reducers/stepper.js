@@ -17,7 +17,8 @@ const initialState = {
     IngredientsBasket:[],
     SizeBasket:"23 cm",
     BaseListi:{},
-    price:0
+    price:0,
+    
 
 }
 
