@@ -28,14 +28,22 @@ export default (state = initialState, action) => {
                 pizzas: [],
                 error: action.payload
             }
-        case ADD_TO_CART:
-            const item = state.pizzas.find(pizza => pizza.id === action.payload.id)
-            const inCart = state.cart.find(item => item.id === action.payload.id ? true : false)
-            return{
-                ...state,
-                cart: inCart ? state.cart.map(item => item.id === action.payload.id ? {...item, qty: item.qty + 1} : item) :
-                [...state.cart, {...item, qty: 1}],
-            }
+            case ADD_TO_CART:
+                let cart = localStorage.getItem('cart')? JSON.parse(localStorage.getItem('cart')): []
+                const item = state.pizzas.find(pizza => pizza.id === action.payload.id)
+                const inCart = state.cart.find(item => item.id === action.payload.id ? true : false)
+                if(inCart) {
+                    item.qty = item.qty + 1
+                    cart.push(item)
+                } else {
+                    item.qty = 1
+                    cart.push(item)
+                }
+                localStorage.setItem('cart', JSON.stringify(cart))
+                return{
+                    ...state,
+                    cart: cart
+                }
         case REMOVE_FROM_CART:
             return{
                 ...state,
