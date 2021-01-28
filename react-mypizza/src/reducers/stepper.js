@@ -15,7 +15,7 @@ const initialState = {
     Base:BaseListe.Liste,
 
     IngredientsBasket:[],
-    SizeBasket:"23 cm",
+    SizeBasket:"",
     BaseListi:{},
     price:0,
     
