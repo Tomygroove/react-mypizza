@@ -1,54 +1,16 @@
 import React, {useState, useEffect} from 'react'
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
 import styled from "styled-components"
 import ProductCart from '../ProductCart'
 import StripeCheckout from 'react-stripe-checkout'
 
 
-
-
-const Container = styled.div`
-    width:100%;
-    height:100vh;
-    margin:0px;
-    overflow: auto;
-    display:flex;
-    padding-top:20px;
-    flex-direction:column;
-    background: #E5E5E5;
-`
-const Title = styled.h1`
-    text-align: center;
-`
-const CartContainer = styled.div `
-
-    margin: 5% 10%;
-    border-bottom: 1px solid black;
-    border-top: 1px solid black;
-
-`
-
-const Column = styled.td`
-    width: calc(100%/5);
-    height:20vh;
-    text-align:${(props) => props.right? "right" : "center"};
-
-`
-
-const Table = styled.table`
-    width:100%;
-`
-const Text = styled.p`
-    text-align: center;
-
-`
-
-
-
 const CartList = props => {
 
     const cart = useSelector(state => state.shopCart.cart )
-    console.log(cart);
+    const qtyInCart = useSelector(state => state.shopCart.qtyInCart )
+    
+
     let [total, setTotal] = useState(0);
 
     useEffect(()=>{
@@ -82,8 +44,9 @@ const CartList = props => {
                         <tbody>
                         {cart.map(product => 
                             <ProductCart 
+                                id = {product.id}
                                 price= {product.price} 
-                                img = {product.img} 
+                                img = {product.images[0].src} 
                                 name = {product.name} 
                                 qty={product.qty}
                                 
@@ -128,4 +91,39 @@ const CartList = props => {
     
 };
 
+const Container = styled.div`
+    width:100%;
+    height:100vh;
+    margin:0px;
+    overflow: auto;
+    display:flex;
+    padding-top:20px;
+    flex-direction:column;
+    background: #E5E5E5;
+`
+const Title = styled.h1`
+    text-align: center;
+`
+const CartContainer = styled.div `
+
+    margin: 5% 10%;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+
+`
+
+const Column = styled.td`
+    width: calc(100%/5);
+    height:20vh;
+    text-align:${(props) => props.right? "right" : "center"};
+
+`
+
+const Table = styled.table`
+    width:100%;
+`
+const Text = styled.p`
+    text-align: center;
+
+`
 export default CartList;

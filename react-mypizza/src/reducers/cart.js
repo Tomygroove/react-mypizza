@@ -1,11 +1,13 @@
-import {ADD_TO_CART, ADJUST_QTY, GET_DATA_ERROR, GET_DATA_REQUEST, GET_DATA_SUCCESS, REMOVE_FROM_CART, GET_CART} from '../actions/cart'
+import {ADD_TO_CART, INCREMENT_QTY, GET_DATA_ERROR, GET_DATA_REQUEST, GET_DATA_SUCCESS, REMOVE_FROM_CART, GET_CART} from '../actions/cart'
 
 
 
 const initialState = {
     loading: false,
     pizzas: [],
-    cart: []
+    cart: localStorage.getItem('cart')? JSON.parse(localStorage.getItem('cart')): [],
+    cartQty : 0,
+ 
 }
 
 export default (state = initialState, action) => {
@@ -28,29 +30,48 @@ export default (state = initialState, action) => {
                 pizzas: [],
                 error: action.payload
             }
+
         // case GET_CART:
         //     return{
         //         ...state,
         //         cart : localStorage.getItem('cart')? JSON.parse(localStorage.getItem('cart')): []
         //     }
-        case ADD_TO_CART:
-            const item = state.pizzas.find(pizza => pizza.id === action.payload.id)
-            const inCart = state.cart.find(item => item.id === action.payload.id ? true : false)
-            return{
-                ...state,
-                cart: inCart ? state.cart.map(item => item.id === action.payload.id ? {...item, qty: item.qty + 1} : item) :
-                [...state.cart, {...item, qty: 1}],
-            }
+
+
+            case ADD_TO_CART:
+                let cart = localStorage.getItem('cart')? JSON.parse(localStorage.getItem('cart')): []
+                const item = state.pizzas.find(pizza => pizza.id === action.payload.id)
+                const inCart = state.cart.find(item => item.id === action.payload.id ? true : false)
+                
+                if(inCart) {
+                    item.qty = item.qty + 1
+                } else {
+                    item.qty = 1
+                    cart.push(item)
+                }
+                localStorage.setItem('cart', JSON.stringify(cart))
+                return{
+                    ...state,
+                    cart: cart,
+                    cartQty: state.cartQty+ 1
+                }
+
         case REMOVE_FROM_CART:
+            let newCart = state.cart.filter((item) => item.id != action.payload.pizzaID)
+            localStorage.setItem('cart', JSON.stringify(newCart))
             return{
                 ...state,
-                cart: state.cart.filter((item) => item.id !== action.payload.id)         
+                cart: newCart      
             }
         
-        case ADJUST_QTY:
+        case INCREMENT_QTY:
+            state.cart.map(item => item.id === action.payload.id ? item.qty ++ : item.qty = 1)
+            let newSty = state.cart
+            localStorage.setItem('cart', JSON.stringify(newSty))
+
             return{
                 ...state,
-                cart: state.cart.map(item => item.id === action.payload.id ? {...item, qty: action.payload.qty} : item)
+                cart: newSty
             }
         default:
             return state
