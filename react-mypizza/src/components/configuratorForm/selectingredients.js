@@ -63,6 +63,11 @@ flex-direction: column;
 
 const Row = styled.div `
 display:flex;
+
+@media  screen and (max-width: 680px) {
+    width:100%;
+}
+
 `
 
 const ConfigTaille = styled.ul`
@@ -142,8 +147,7 @@ const Texte = styled.span`
     color: #70626f;
     transition: color ease-in 0.2s;
     line-height: 1.1;
-    font-size: 19px;
-    font-weight: 500;
+    font-size: 15px;
 `
 const Back = styled.a`
 position: absolute;

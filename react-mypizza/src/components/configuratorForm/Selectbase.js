@@ -40,6 +40,7 @@ const SelectBase = ()=>{
                                 </Zone_texte>
                             </Item_large>
                         </Item>
+                        
                         )
                         }
                     </ConfigTaille>
@@ -67,6 +68,7 @@ const ConfigTaille = styled.ul`
     display:flex;
     flex-wrap:wrap;
     justify-content: center;
+    list-style-type:none;
     `
 const Config_slide_title = styled.li`
     color: #6e626c;

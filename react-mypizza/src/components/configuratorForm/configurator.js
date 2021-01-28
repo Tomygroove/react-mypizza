@@ -16,27 +16,27 @@ const ConfiguratorRecap = () => {
 
         dispatch(DeleteIngredients(id))
     }
-    
-    
+
     return(
         <>
-                <div>
-                        <form>
-                            <Recap>
-                                <Row>
-                                     <Etape_New>
-                                     <Label_new>Taille</Label_new>
-                                     <Recap_ul>
-                                         <li>{SizeBasket}</li>
-                                     </Recap_ul>
-                                     </Etape_New>
-                                </Row>
-                                <Row>
+            <FormStyled>
+                <Recap>
+                    <Row>
+                        <Etape_New>
+                            <Label_new>Taille</Label_new>
+                                <Recap_ul>
+                                    <li>{SizeBasket}</li>
+                                </Recap_ul>
+                        </Etape_New>
+                    </Row>
+                    <Row>
                                      <Etape_New>
                                          <Label_new>Base</Label_new>
+                                         <Recap_ul>
                                          <li>
                                              <ImgSize src={BaseListe.img}></ImgSize>
                                          </li>
+                                         </Recap_ul>
                                      </Etape_New>
                                 </Row>
                                 <Row>
@@ -63,13 +63,25 @@ const ConfiguratorRecap = () => {
                                          <PizzaName></PizzaName>
                                      </Etape_New>
                                 </Row>
+                                <RecaPrice>Prix</RecaPrice>
+                                <Row>
+                                    <CreateButton type="submit">Créer</CreateButton>
+                                </Row>
                             </Recap>
-                        </form>
-                </div>
+                        </FormStyled>
+                
 
         </>
     )
 }
+
+
+const FormStyled = styled.form`
+    width: 100%;
+    @media  screen and (min-width: 768px) {
+        width:20%;
+    }
+`
 
 
 const Recap = styled.div`
@@ -83,7 +95,6 @@ const Row = styled.div`
     margin-left: 0;
     margin-right: 0;
     width: 100%;
-    max-width: 100%;
 `
 
 const Etape_New = styled.div`
@@ -132,16 +143,35 @@ float: left;
 margin: 10px 1%;
 text-align: center;
 `
-
-
-
 const PizzaName = styled.input`
-       background:red;
+        width:100%;
         border: none;
+        background:#f0f0f0;
         border-radius: 10px;
         margin: 5px 0 0 0;
         display: inline-block;
+        height:55px;
 `
+const RecaPrice = styled.div`
+    text-align: center;
+    margin: 10px 0 15px;
+    font: 500 42px/1 "BebasNeue","Roboto",Verdana,Arial,sans-serif;
+    font-size: 42px;
+    font-size: 3rem;
+    color: #f0423b;
+`
+const CreateButton = styled.button`
+    background: #f0423b;
+    font-size: 26px;
+    line-height: 40px;
+    border: 0px aliceblue;
+    font-size: medium;
+    width: 60%;
+    margin: 0 20% auto
+`
+
+
+
 
 export default ConfiguratorRecap
            
