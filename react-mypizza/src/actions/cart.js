@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from '../../node/node_modules/axios'
 
 export const GET_DATA_REQUEST = 'GET_DATA_REQUEST'
 export const GET_DATA_SUCCESS = 'GET_DATA_SUCCESS'
@@ -6,6 +6,7 @@ export const GET_DATA_ERROR = 'GET_DATA_ERROR'
 export const ADD_TO_CART = 'ADD_TO_CART'
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 export const ADJUST_QTY = 'ADJUST_QTY'
+export const GET_CART = "GET_CART"
 
 
 export const fetchPizzas = () => {
@@ -23,6 +24,10 @@ export const fetchPizzas = () => {
         })
     }
 }
+
+export const getCart = () => ({
+    type: GET_CART
+})
 
 export const fetchDataRequest = () => ({
     type: GET_DATA_REQUEST

@@ -1,4 +1,4 @@
-import {ADD_TO_CART, ADJUST_QTY, GET_DATA_ERROR, GET_DATA_REQUEST, GET_DATA_SUCCESS, REMOVE_FROM_CART} from '../actions/cart'
+import {ADD_TO_CART, ADJUST_QTY, GET_DATA_ERROR, GET_DATA_REQUEST, GET_DATA_SUCCESS, REMOVE_FROM_CART, GET_CART} from '../actions/cart'
 
 
 
@@ -28,6 +28,11 @@ export default (state = initialState, action) => {
                 pizzas: [],
                 error: action.payload
             }
+        // case GET_CART:
+        //     return{
+        //         ...state,
+        //         cart : localStorage.getItem('cart')? JSON.parse(localStorage.getItem('cart')): []
+        //     }
         case ADD_TO_CART:
             const item = state.pizzas.find(pizza => pizza.id === action.payload.id)
             const inCart = state.cart.find(item => item.id === action.payload.id ? true : false)
@@ -41,6 +46,7 @@ export default (state = initialState, action) => {
                 ...state,
                 cart: state.cart.filter((item) => item.id !== action.payload.id)         
             }
+        
         case ADJUST_QTY:
             return{
                 ...state,
