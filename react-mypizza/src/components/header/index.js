@@ -14,7 +14,7 @@ const Header = () => {
     return (
         <>
             <HeaderContainer>
-                <TitleLink to="/home">My Pizza</TitleLink>
+                <TitleLink to="/pizzas">My Pizza</TitleLink>
                 {/* <Bars /> */}
                 <NavMenu>
                     <NavLink to="/pizzas">Liste de Pizzas</NavLink>
