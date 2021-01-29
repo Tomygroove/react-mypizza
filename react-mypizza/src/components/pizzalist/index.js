@@ -91,7 +91,6 @@ height: 72px;
   
 `
 const Counter = styled.h3`
-font-family: Takeaway Sans,Avant Garde,Century Gothic,Helvetica,Arial,sans-serif;
 font-weight: 600;
 font-size: 18px;
 line-height: 1.22;
@@ -125,7 +124,6 @@ float: left;
 width: 100px;
 `
 const PizzaTittle = styled.h3`
-font-family: Takeaway Sans,Avant Garde,Century Gothic,Helvetica,Arial,sans-serif;
 font-weight: 600;
 font-size: 18px;
 line-height: 1.22;
@@ -140,7 +138,6 @@ color: #666;
 line-height: 1.5;
 `
 const Price = styled.p`
-font-family: Takeaway Sans,Avant Garde,Century Gothic,Helvetica,Arial,sans-serif;
 font-weight: 600;
 font-size: 18px;
 line-height: 1.22;

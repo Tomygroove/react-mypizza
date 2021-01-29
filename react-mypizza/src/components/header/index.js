@@ -15,14 +15,16 @@ const Header = () => {
         <>
             <HeaderContainer>
                 <TitleLink to="/home">My Pizza</TitleLink>
-                <Bars />
+                {/* <Bars /> */}
                 <NavMenu>
                     <NavLink to="/pizzas">Liste de Pizzas</NavLink>
                     <NavLink to="/home">Mon configurateur</NavLink>
                     <NavLink to="/cart">Mon panier</NavLink>
                 </NavMenu>
-             
-                <Logout></Logout>
+                {/* <LogoutBtn> */}
+                    {/* <LogoutBtnLink to="/home">OUi</LogoutBtnLink> */}
+                    <Logout />
+                {/* </LogoutBtn> */}
             </HeaderContainer>
         </>
     )
@@ -62,7 +64,7 @@ const Bars = styled(FaBars)`
         top: 0;
         right: 0;
         transform: translate(-100%, 75%);
-        font-size: 108rem;
+        font-size: 1.8rem;
         cursor: pointer;
     }
 `
@@ -72,9 +74,9 @@ const NavMenu = styled.div`
     align-items: center;
     margin-right: -24px;
 
-    @media screen and (max-width: 768px) {
-        display: none;
-    }
+    // @media screen and (max-width: 768px) {
+    //     display: none;
+    // }
 `
 
 const NavLink = styled(Link)`
@@ -91,7 +93,7 @@ cursor: pointer;
 }
 `
 
-const NavBtn = styled.nav`
+const LogoutBtn = styled.nav`
 display: flex;
 align-items: center;
 margin-right: 24px;
@@ -101,7 +103,7 @@ margin-right: 24px;
 }
 `
 
-const NavBtnLink = styled.nav`
+const LogoutBtnLink = styled(Link)`
 border-radius: 4px;
 background: #256ce1;
 padding: 10px 22px;
