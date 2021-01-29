@@ -1,26 +1,15 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from 'react';
 import PizzaForm from "../components/configuratorForm/pizzaform"
 import bgimg from "../assets/images/configuratorbg.jpg";
+=======
+import React from 'react';
+>>>>>>> 2a52e7b412488380965f2588ac08533e3afe83c9
 import styled from "styled-components"
-import axios from "axios"
-
-
-const Container = styled.div`
-width:100%;
-height:100vh;
-margin:0px;
-overflow: auto;
-display:flex;
-padding-top:20px;
-flex-direction:column;
-background-image:url(${bgimg});
-background-repeat: no-repeat;
-background-size: cover;
-`
-
-
+import Home from "./home"
 
 const Configurator = () => {
+<<<<<<< HEAD
 
   const [Ingredients, SetIngredients] = useState([])
   
@@ -63,6 +52,12 @@ const Configurator = () => {
         <Container>
             <PizzaForm Create_pizza={Create_pizza}  ingredients={Ingredients}></PizzaForm>
         </Container>
+=======
+    return (
+      <div>
+        <Home></Home>
+      </div>
+>>>>>>> 2a52e7b412488380965f2588ac08533e3afe83c9
     );
 };
 
