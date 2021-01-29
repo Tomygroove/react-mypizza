@@ -30,18 +30,7 @@ const CartList = props => {
             <Container>
                 <Title>Votre panier</Title>
                 <CartContainer>
-                <Table>
-                        <thead>
-                            <tr>
-                                <Column></Column>
-                                <Column>Pizza</Column>
-                                <Column>Quantité</Column>
-                                <Column>Prix unitaire</Column>
-                                <Column>Prix total</Column>
-                                <Column></Column>
-                            </tr>
-                        </thead>
-                        <tbody>
+                
                         {cart.map(product => 
                             <ProductCart 
                                 key= {product.id}
@@ -53,30 +42,12 @@ const CartList = props => {
                                 
                                 >
     
-                                </ProductCart>
+                            </ProductCart>
                         
                         )}
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <Column right colSpan="4">Total:</Column>
-                                <Column >{total.toFixed(2)}€</Column>
-                                <Column >
-                                    <StripeCheckout 
-                                    stripeKey="pk_test_51HqFjsLExcHBUVQnWuGRxHmsg1wX31Duka1ZqhgovRtSaS22aUPnURuK3IY34zc7cpadks9N4ViWiFK2XsHSTuLk00PjxQ6fyv"
-                                    token={handleToken}
-                                    billingAddress
-                                    shippingAddress
-                                    amout= {total.toFixed(2)}
-                                    >
-                                        <button>Acheter maintenant</button>
-                                    </StripeCheckout>
-                                </Column>
-                            </tr>
-                        </tfoot>
-                    </Table>
                 </CartContainer>
             </Container>
+                        
         );
     }
     else{
@@ -107,9 +78,11 @@ const Title = styled.h1`
 `
 const CartContainer = styled.div `
 
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
     margin: 5% 10%;
-    border-bottom: 1px solid black;
-    border-top: 1px solid black;
+ 
 
 `
 
