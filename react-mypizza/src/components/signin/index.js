@@ -36,7 +36,7 @@ const Container = styled.div`
 
   const Title = styled.h1`
   text-align: center;
-  color :#fff;
+  color: #3498db;
   margin-top: 30px;
   text-decoration: none;
   padding: 0 1rem;
@@ -51,6 +51,7 @@ const Container = styled.div`
 const StyledForm = styled.form`
   width: 300px;
   padding: 40px;
+  border-radius:30px;
   position: absolute;
   top: 50%;
   left: 50%;
