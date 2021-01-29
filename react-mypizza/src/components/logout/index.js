@@ -28,7 +28,6 @@ const LogoutButton = styled.button`
     border-radius:2px;
     box-shadow:3px 3px 12px #999;
     background:#d34836;
-    font-family: 'Carter One', cursive;
     color:#2A2F32;
 `
 const Button = styled.button`

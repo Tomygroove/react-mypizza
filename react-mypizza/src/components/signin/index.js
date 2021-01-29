@@ -41,7 +41,6 @@ const Container = styled.div`
   text-decoration: none;
   padding: 0 1rem;
   cursor: pointer;
-  font-family: 'Carter One', cursive;
   
   
   &:hover {
@@ -64,7 +63,6 @@ const StyledSpan = styled.span`
 color: white;
   text-transform: uppercase;
   font-weight: 500;
-  font-family: 'Carter One', cursive;
 `
 
 const SigninInput = styled.input`
@@ -80,7 +78,6 @@ const SigninInput = styled.input`
   color: white;
   border-radius: 24px;
   transition: 0.25s;
-  font-family: 'Carter One', cursive;
 
   &:focus{
   width: 250px;
@@ -100,7 +97,6 @@ color: white;
 border-radius: 24px;
 transition: 0.25s;
 cursor: pointer;
-font-family: 'Carter One', cursive;
 
 &:hover{
     background: #2ecc71;
