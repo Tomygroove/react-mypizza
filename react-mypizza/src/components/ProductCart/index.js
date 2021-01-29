@@ -37,13 +37,46 @@ const ProductList = props => {
         //         <button onClick={() => dispatch(removeFromCart(props.id))}>Supprimer</button>
         //     </Column>
         // </tr>
-        <CartProductCardContainer>
-            <h2>On est àl</h2>
-        </CartProductCardContainer>
+        <CartProductsCardContainer>
+            <OneProductContainer>
+                <StyledImg src={props.img}></StyledImg>
+                <InfoProductContainer>
+
+                <p>{props.name}</p>
+                <div>
+                    quantité : 
+                        <button onClick={decrement}>-</button>
+                            {qty}
+                        <button onClick={increment}>+</button>
+                </div>
+                <div>
+                total :{props.price * props.qty}€
+                </div>
+                <div>
+                <button onClick={() => dispatch(removeFromCart(props.id))}>Supprimer</button>
+                </div>
+                </InfoProductContainer>
+            </OneProductContainer>   
+        </CartProductsCardContainer>
     );
 };
-const CartProductCardContainer = styled.div`
-    width:100%;
+const OneProductContainer = styled.div`
+    width: 100%;
+    height: 25vh;
+    background:white;
+    display: flex;
+
+`
+const InfoProductContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 2vh 2vw;
+`
+const CartProductsCardContainer = styled.div`
+    width:45%;
+    display: flex;
+    margin: 2vh 2.5%;
     
 `
 
@@ -56,8 +89,9 @@ text-align:center;
 `
 
 const StyledImg = styled.img`
-height:90%;
-width: 90%;
+height:95%;
+width: 35%;
+margin: 1% 1% ;
 `
 const testClick = (e, cart) => {
     alert(cart);
