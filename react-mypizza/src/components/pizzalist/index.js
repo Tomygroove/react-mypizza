@@ -82,12 +82,11 @@ text-decoration: none;
 
 const Image = styled.p `
 background-image:url(${bgimg});
-width: 60px;
+width: 50px;
 height: 72px;
  background-repeat: no-repeat;
  background-size: cover;
  float: left;
-    margin-right: 10px;
     clear:both;
   
 `
@@ -99,8 +98,8 @@ line-height: 1.22;
 color: #0a3847;
 position: relative;
 top: 25px;
-max-width: 85px;
-
+max-width: 105px;
+left: 30px
 `
 
 const Wrapper = styled.div`

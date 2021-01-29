@@ -21,12 +21,7 @@ const Header = () => {
                     <NavLink to="/home">Mon configurateur</NavLink>
                     <NavLink to="/cart">Mon panier</NavLink>
                 </NavMenu>
-                {/* <WrapperCart>
-                    <GoCart href="/cart">
-                    <ImageCart /> */}
-                    {/* <Counter>{cartCount}</Counter> */}
-                    {/* </GoCart>
-                </WrapperCart> */}
+             
                 <Logout></Logout>
             </HeaderContainer>
         </>
