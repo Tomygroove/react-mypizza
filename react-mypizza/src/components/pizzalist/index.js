@@ -4,6 +4,8 @@ import {useDispatch} from 'react-redux'
 import {addToCart, fetchPizzas, cart} from '../../actions/cart'
 import {connect} from 'react-redux'
 import bgimg from "../../assets/images/cart.PNG";
+import { Link } from 'react-router-dom'
+
 
 
 const PizzaList = ({pizzas, fetchPizzas}) => {
@@ -21,10 +23,10 @@ const PizzaList = ({pizzas, fetchPizzas}) => {
     return (
         <Wrapper>
             <WrapperCart>
-            <GoCart href="/cart">
-            <Image></Image>
-            <Counter>{cartCount}</Counter>
-            </GoCart>
+            <StyledLink to={`/cart`}>
+                <Image></Image>
+                <Counter>{cartCount}</Counter>
+            </StyledLink>
             
             </WrapperCart>
            
@@ -74,7 +76,7 @@ const WrapperCart = styled.div `
 max-width: 100%;
 height: 80px;
 `
-const GoCart = styled.a `
+const StyledLink = styled(Link) `
 text-decoration: none;
 `
 
