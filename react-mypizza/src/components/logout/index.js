@@ -43,6 +43,8 @@ const Button = styled.button`
 
 const Container = styled.div`
   float: right;
+  display: flex;
+  align-items: center;
 `
 
 export default Logout
