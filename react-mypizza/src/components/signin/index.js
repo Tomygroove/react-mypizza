@@ -8,6 +8,8 @@ const Signin = ({submit}) => {
     const history = useHistory()
 
     return (
+      <Container>
+      <Title>My Pizza</Title>
         <StyledForm onSubmit={(e) => submit(e, formState, setErrorMessage, history)}>
             <StyledSpan>Se Connecter</StyledSpan>
             <SigninInput onChange={e => setFormState({ ...formState, email: e.target.value})} type='email' placeholder='Email'></SigninInput>
@@ -15,8 +17,37 @@ const Signin = ({submit}) => {
             <StyledSpan>{errorMessage}</StyledSpan>
             <SigninSubmit type='Submit' value='Connexion'></SigninSubmit>
         </StyledForm>
+        </Container>
     );
 };
+
+
+
+const Container = styled.div`
+    width:100%;
+    height:100vh;
+    margin:0px;
+    overflow: auto;
+    display:flex;
+    padding-top:20px;
+    flex-direction:column;
+    background: #222222;
+  `
+
+  const Title = styled.h1`
+  text-align: center;
+  color :#fff;
+  margin-top: 30px;
+  text-decoration: none;
+  padding: 0 1rem;
+  cursor: pointer;
+  font-family: 'Carter One', cursive;
+  
+  
+  &:hover {
+      color: white;
+  }
+  `
 
 const StyledForm = styled.form`
   width: 300px;
@@ -33,6 +64,7 @@ const StyledSpan = styled.span`
 color: white;
   text-transform: uppercase;
   font-weight: 500;
+  font-family: 'Carter One', cursive;
 `
 
 const SigninInput = styled.input`
@@ -48,6 +80,7 @@ const SigninInput = styled.input`
   color: white;
   border-radius: 24px;
   transition: 0.25s;
+  font-family: 'Carter One', cursive;
 
   &:focus{
   width: 250px;
@@ -67,6 +100,7 @@ color: white;
 border-radius: 24px;
 transition: 0.25s;
 cursor: pointer;
+font-family: 'Carter One', cursive;
 
 &:hover{
     background: #2ecc71;
