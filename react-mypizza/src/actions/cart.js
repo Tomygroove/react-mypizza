@@ -1,11 +1,13 @@
-import axios from 'axios'
+import axios from '../../node/node_modules/axios'
 
 export const GET_DATA_REQUEST = 'GET_DATA_REQUEST'
 export const GET_DATA_SUCCESS = 'GET_DATA_SUCCESS'
 export const GET_DATA_ERROR = 'GET_DATA_ERROR'
 export const ADD_TO_CART = 'ADD_TO_CART'
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
-export const ADJUST_QTY = 'ADJUST_QTY'
+export const INCREMENT_QTY = 'INCREMENT_QTY'
+export const DECREMENT_QTY = 'DECREMENT_QTY'
+export const GET_CART = "GET_CART"
 
 
 export const fetchPizzas = () => {
@@ -23,6 +25,10 @@ export const fetchPizzas = () => {
         })
     }
 }
+
+export const getCart = () => ({
+    type: GET_CART
+})
 
 export const fetchDataRequest = () => ({
     type: GET_DATA_REQUEST
@@ -52,10 +58,15 @@ export const removeFromCart = pizzaID => ({
     }
 })
 
-export const adjustQty = (pizzaID, value) => ({
-    type: ADJUST_QTY,
+export const incrementtQty = (pizzaID) => ({
+    type: INCREMENT_QTY,
     payload: {
         id: pizzaID,
-        qty: value
+    }
+})
+export const decrementQty = (pizzaID) => ({
+    type: DECREMENT_QTY,
+    payload: {
+        id: pizzaID,
     }
 })

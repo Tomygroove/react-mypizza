@@ -8,8 +8,8 @@ const Cart = () => {
     
     return (
         <div>
-        <Header></Header>
-        <CartList></CartList>
+            <Header></Header>
+            <CartList></CartList>
         </div>
     );
 };

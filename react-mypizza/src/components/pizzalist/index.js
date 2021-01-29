@@ -31,28 +31,14 @@ const PizzaList = ({pizzas, fetchPizzas}) => {
             </WrapperCart>
            
             {pizzas.map((pizza, index) => {
-                const data = pizza
-                const getValueByKey = (key, data) => {
-                    var i, len = data.length;
-                    
-                    for (i = 0; i < len; i++) {
-                        if (data[i] && data[i].hasOwnProperty(key)) {
-                            return data[i][key];
-                        }
-                    }
-                    
-                    return -1;
-                }
-                console.log(getValueByKey('src', pizza.images));
-                console.log(pizza.id)
-                const image = getValueByKey('src', pizza.images);
+                
                 const desc = pizza.description
                 const description = desc.replace('<p>','').replace('</p>', '')
 
                 return (
-                <ListContainer>
+                <ListContainer key={pizza.id}>
                     
-                    <WrapperImg src={image} />    
+                    <WrapperImg src={pizza.images[0].src} />    
                     <TittleDesc>  
                     <PizzaTittle>{pizza.name}</PizzaTittle>
                     <Desc>{description}</Desc>
@@ -116,7 +102,7 @@ max-width: 85px;
 const Wrapper = styled.div`
 display: flex;
 flex-direction: column;
-background: 
+
 `
 const WrapperButton = styled.div`
 display: flex;
