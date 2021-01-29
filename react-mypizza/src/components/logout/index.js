@@ -26,22 +26,23 @@ const LogoutButton = styled.button`
     border:none;
     padding:6px 5px 6px 5px;
     border-radius:2px;
+    box-shadow:3px 3px 12px #999;
     background:#d34836;
+    font:bold 13px Arial;
     color:#2A2F32;
 `
 const Button = styled.button`
   border:none;
   padding:6px 5px 6px 5px;
   border-radius:2px;
-  background-color: #3498db;
-  color:#15cdfc;
+  box-shadow:3px 3px 12px #999;
+  background-color: #056162;
+  font:bold 13px Arial;
+  color:#2A2F32;
 `
 
 const Container = styled.div`
-  // float: right;
-  display: flex;
-  align-items: center;
-  padding: 0 1rem;
+  float: right;
 `
 
 export default Logout

@@ -1,9 +1,9 @@
-import React,{useState} from 'react';
+import React,{useState,} from 'react';
 import styled from 'styled-components'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux'
 import {Nextstep, DeleteIngredients} from '../../actions/stepper'
-import base1 from '../../assets/images/base1.png'
+import axios from 'axios'
 
 const ConfiguratorRecap = () => {
 
@@ -12,14 +12,93 @@ const ConfiguratorRecap = () => {
     const BaseListe = useSelector(state=>state.step.BaseListi)
     const IngredientsListeBasket = useSelector(state=>state.step.IngredientsBasket)
     
-    const DeleteIngredient=(e,id)=>{
 
+    const [NewPizza,SetNewPizza]= useState({
+        "regular_price":"",
+        "description":"",
+        "name":"",
+        "type":""
+    })
+
+    const [NewIng, SetNewIng]= useState([])
+    const [Total, SetTotal]= useState(0)
+    const history = useHistory()
+    
+
+    
+     const AddPizza = (e)=>{
+         e.preventDefault();
+        
+        // List of ingrefients select : IngredientsListeBasket
+        // Base Value: BaseListe
+        // Pizza size: SizeBasket
+        let uniq ={}
+        let arrFiltered = IngredientsListeBasket.filter(obj => !uniq[obj.value.name] && (uniq[obj.value.name] = true));
+         let IngredientTostore="";
+
+         // pizza description contain
+          let baseTostore   =  "Taille: "+SizeBasket+" | ";
+          IngredientTostore += baseTostore
+          IngredientTostore += " Base: "+BaseListe.name+" | "
+          IngredientTostore += " Ingredients: "
+
+            // pizza price calculating
+            let price = parseInt( BaseListe.price)
+            SetTotal( parseInt( price ) )
+
+            console.log( IngredientsListeBasket ) 
+            IngredientsListeBasket.map( i=>{
+                price = price + parseInt(i.value.price)
+               
+            })
+            
+
+            let FinalPrice = ""
+            FinalPrice += price
+            //alert( Total )
+
+            //Add => inredient Data
+            arrFiltered.forEach( x=>{
+                IngredientTostore+=x.value.name+" , "
+            })
+
+
+         let data =JSON.stringify({"name":NewPizza.name,"type":"simple","regular_price":FinalPrice,"description":IngredientTostore,
+                    "images":[{"src":"https://dev.ona-itconsulting.com/pizzasimulator/wp-content/uploads/2021/01/C-8528.png"}]});
+          axios({
+            method: 'post',
+            url: 'https://dev.ona-itconsulting.com/pizzasimulator/wp-json/wc/v3/products?consumer_key=ck_3addb4df2eda7ea81545635fc44703f5bd24002a&consumer_secret=cs_c1b54bd4bfda5f69fa0a204f0227d2e0317fa614',
+            data:data,
+            headers: {
+                'Content-Type': 'application/json' 
+            }
+          }).then((response) => {
+            console.log('token', response);
+            history.push("/pizzas")
+        })
+        .catch((response) => console.log('error', response));
+   
+        }
+
+        
+
+
+
+
+
+
+
+
+
+    
+    
+    const DeleteIngredient=(e,id)=>{
         dispatch(DeleteIngredients(id))
     }
 
     return(
         <>
-            <FormStyled>
+            <FormStyled onSubmit={(e)=>AddPizza(e)}>
                 <Recap>
                     <Row>
                         <Etape_New>
@@ -30,23 +109,21 @@ const ConfiguratorRecap = () => {
                         </Etape_New>
                     </Row>
                     <Row>
-                                     <Etape_New>
-                                         <Label_new>Base</Label_new>
-                                         <Recap_ul>
-                                         <li>
-                                             <ImgSize src={BaseListe.img}></ImgSize>
-                                         </li>
-                                         </Recap_ul>
-                                     </Etape_New>
-                                </Row>
-                                <Row>
-                                     <Etape_New>
-                                         <Label_new>Ingredients choisis</Label_new>
-                                         <IngredientsChoisi>
-                                            <Recap_ul >
-                                            {
-                                                IngredientsListeBasket.map(ing=>
-                                                    <IngredientsLi key={ing.id}>
+                         <Etape_New>
+                            <Label_new>Base</Label_new>
+                            <Recap_ul>
+                                <li><ImgSize src={BaseListe.img}></ImgSize></li>
+                            </Recap_ul>
+                        </Etape_New>
+                    </Row>
+                    <Row>
+                    <Etape_New>
+                        <Label_new>Ingredients choisis</Label_new>
+                            <IngredientsChoisi>
+                                <Recap_ul >
+                                    {
+                                        IngredientsListeBasket.map(ing=>
+                                        <IngredientsLi key={ing.id}>
                                                          <ImgSize src={ing.value.img}  onClick={(e)=> {DeleteIngredient(e,ing.id)}}></ImgSize>
                                                      </IngredientsLi>
                                                 )
@@ -59,18 +136,14 @@ const ConfiguratorRecap = () => {
                                      <Etape_New>
                                      <Label_new>Nom de la pizza</Label_new>
                                      <br></br>
-
-                                         <PizzaName></PizzaName>
+                                         <PizzaName type="text" name="name" onChange={e=>SetNewPizza({...NewPizza,name:e.target.value})}></PizzaName>
                                      </Etape_New>
                                 </Row>
-                                <RecaPrice>Prix</RecaPrice>
                                 <Row>
-                                    <CreateButton type="submit">Créer</CreateButton>
+                                    <CreateButton type="submit">Ajouter au panier</CreateButton>
                                 </Row>
                             </Recap>
                         </FormStyled>
-                
-
         </>
     )
 }

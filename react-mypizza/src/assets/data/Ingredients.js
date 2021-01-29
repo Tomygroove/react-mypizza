@@ -24,7 +24,7 @@ export const IngredientsListe ={
         },
         {
             name:"Grana padano",
-            price:"",
+            price:5,
             img:img4
         },
         {

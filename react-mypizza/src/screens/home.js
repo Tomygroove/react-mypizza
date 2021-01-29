@@ -9,7 +9,6 @@ import {useDispatch, useSelector} from 'react-redux'
 import {Nextstep} from '../actions/stepper'
 import base1 from '../assets/images/base1.png'
 import ConfiguratorRecap from '../components/configuratorForm/configurator'
-import Header from '../components/header'
 
 const Home = () => {
 
@@ -20,7 +19,6 @@ const Home = () => {
     
     return(
         <>
-            <Header></Header>
             <MainContainer>  
                 <div>       
                 {First?(<Selesizestepper></Selesizestepper>):null}

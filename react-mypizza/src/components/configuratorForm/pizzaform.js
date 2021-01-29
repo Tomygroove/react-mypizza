@@ -90,54 +90,15 @@ color:#fff;
 
 
 
-const PizzaForm = ({Create_pizza,ingredients})=>{
+const PizzaForm = ({Create_pizza})=>{
 
     const [pizzaData,SetpizzaData] = useState({
-        
-        "regular_price":0,
+        "login":"",
+        "password":"",
+        "regular_price":"",
         "description":"",
-        "name":""
+        "image":""
     })
-
-    const [IngredientsListes, SetIngredientsListes] = useState([])
-
-    const TargetHandle =( e,ing)=>{
-
-        if (e.target.checked){
-            let priceinit = parseInt((pizzaData.regular_price?pizzaData.regular_price:0));
-            let pricefinal = parseInt((ing.regular_price?ing.regular_price:0));
-            let finalpricei = priceinit + pricefinal;
-            SetpizzaData({...pizzaData,regular_price:0})
-
-           
-            IngredientsListes.push({name:ing.name})
-      
-            
-        }else
-        {
-
-            let priceinit = parseInt((pizzaData.regular_price?pizzaData.regular_price:0));
-            let pricefinal = parseInt((ing.regular_price?ing.regular_price:0));
-            let finalpricei = priceinit - pricefinal;
-            const newTodos = IngredientsListes.filter(todo => todo.name !== ing.name)
-            SetIngredientsListes(newTodos) 
-            SetpizzaData({...pizzaData,regular_price:0})
-           
-
-          
-        }
-            
-
-
-
-
-        
-
-    }
-
-
-
-
     const history = useHistory()
     return(
         <>
@@ -152,26 +113,28 @@ const PizzaForm = ({Create_pizza,ingredients})=>{
                 <Formcontainer>
                     <Formlogin onSubmit={(e)=>Create_pizza(e,pizzaData)}>
                         <Titleconnexion>
+                        <Logo>
+                    <LogoImg src={LoginLogo}/>
+                </Logo>
                         </Titleconnexion>
                         <Logininput type="text" name="name" placeholder="intitulé" onChange ={e=>SetpizzaData({...pizzaData,name:e.target.value})}/>
-                        <Logininput type="text" name="regular_price" placeholder="prix" onChange ={e=>SetpizzaData({...pizzaData,regular_price:e.target.value})} value={pizzaData.regular_price} readOnly/>
-                        <div style={{color:'#fff'},{display:'flex'}}>
-                           <div style={{color:'#fff'},{display:'flex'}}>
-                            <h1 style={{color:'#fff'}}>Ingrédients</h1>
-                            </div>
-                            {
-                                <div style={{color:'#fff'},{display:'flex'}}>
-                                    {
-                                ingredients.map( ingredient =>
-                                    <span key={ingredient?.id} style={{color:'#fff'},{display:'flex'}}>
-                                        <input type="checkbox" name="ingredient" value={ingredient.id} onClick ={(e)=>TargetHandle(e,ingredient)}/>
-                                        <label>{ingredient.name}</label>
-                                    </span>
-                                )
-                            }
-                                </div>
-                            }
-                            
+                        <Logininput type="text" name="regular_price" placeholder="prix" onChange ={e=>SetpizzaData({...pizzaData,regular_price:e.target.value})} disabled={false}/>
+                        <div>
+                            <label>Sauce tomate</label>
+                            <input type="checkbox" name="ingredient1"/>
+                            <label>Sauce tomate</label>
+                            <input type="checkbox" name="ingredient1"/>
+                            <label>Sauce tomate</label>
+                            <input type="checkbox" name="ingredient1"/><br/>
+                            <label>Sauce tomate</label>
+                            <input type="checkbox" name="ingredient1"/>
+                            <label>Sauce tomate</label>
+                            <input type="checkbox" name="ingredient1"/>
+                            <label>Sauce tomate</label>
+                            <input type="checkbox" name="ingredient1"/>
+
+
+
                         </div>
                         <Logininput type="submit" value="Créer"/>
                     </Formlogin>
