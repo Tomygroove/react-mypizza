@@ -6,6 +6,7 @@ export const GET_DATA_ERROR = 'GET_DATA_ERROR'
 export const ADD_TO_CART = 'ADD_TO_CART'
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 export const INCREMENT_QTY = 'INCREMENT_QTY'
+export const DECREMENT_QTY = 'DECREMENT_QTY'
 export const GET_CART = "GET_CART"
 
 
@@ -59,6 +60,12 @@ export const removeFromCart = pizzaID => ({
 
 export const incrementtQty = (pizzaID) => ({
     type: INCREMENT_QTY,
+    payload: {
+        id: pizzaID,
+    }
+})
+export const decrementQty = (pizzaID) => ({
+    type: DECREMENT_QTY,
     payload: {
         id: pizzaID,
     }

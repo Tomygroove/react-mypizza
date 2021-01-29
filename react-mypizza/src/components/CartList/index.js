@@ -44,6 +44,7 @@ const CartList = props => {
                         <tbody>
                         {cart.map(product => 
                             <ProductCart 
+                                key= {product.id}
                                 id = {product.id}
                                 price= {product.price} 
                                 img = {product.images[0].src} 

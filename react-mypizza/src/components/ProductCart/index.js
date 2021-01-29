@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import styled from "styled-components"
 
 import {useDispatch} from 'react-redux'
-import {removeFromCart, addToCart} from '../../actions/cart'
+import {removeFromCart, addToCart, decrementQty } from '../../actions/cart'
 
 
 
@@ -12,12 +12,6 @@ const ProductList = props => {
     let [qty, setQty] = useState(props.qty)
 
     const dispatch = useDispatch()
-    const incrementQty = () => {
-        setQty(qty++);
-    }
-    const decrementQty = () => {
-        setQty(qty--);
-    }
     return (
         <tr>
             <Column>
@@ -25,7 +19,7 @@ const ProductList = props => {
             </Column>
             <Column>{props.name}</Column>
             <Column> 
-                <button onClick={decrementQty}>-</button>
+                <button onClick={() => dispatch(decrementQty(props.id))}>-</button>
                     {qty}
                 <button onClick={() => dispatch(addToCart(props.id))}>+</button></Column>
             <Column>{props.price}€</Column>
