@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom'
 
 const PizzaList = ({pizzas, fetchPizzas}) => {
 
+    const [searchPizza, setSearchPizza] = useState('')
     const [cartCount, setCartCount] = useState(0)
     const dispatch = useDispatch()
     const addToCartBtn = (id) => {
@@ -27,10 +28,16 @@ const PizzaList = ({pizzas, fetchPizzas}) => {
                 <Image></Image>
                 <Counter>{cartCount}</Counter>
             </StyledLink>
-            
+            <StyledInput type="text" placeholder="Search..." onChange={event => {setSearchPizza(event.target.value)}}></StyledInput>
             </WrapperCart>
            
-            {pizzas.map((pizza, index) => {
+            {pizzas.filter((pizza) => {
+                if(searchPizza == "") {
+                    return pizza
+                } else if(pizza.name.toLowerCase().includes(searchPizza.toLowerCase())) {
+                    return pizza
+                }
+            }).map((pizza, index) => {
                 
                 const desc = pizza.description
                 const description = desc.replace('<p>','').replace('</p>', '')
@@ -74,7 +81,15 @@ const mapDispatchToProps = dispatch => {
 }
 const WrapperCart = styled.div `
 max-width: 100%;
-height: 80px;
+height: 130px;
+align-self: center;
+`
+const StyledInput = styled.input `
+font-family: Comic Sans MS, Comic Sans, cursive;
+font-weight: 400;
+font-size: 14px;
+color: #666;
+line-height: 1.5;
 `
 const StyledLink = styled(Link) `
 text-decoration: none;
