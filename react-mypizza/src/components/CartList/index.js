@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {useSelector, useDispatch} from 'react-redux'
+import {useSelector} from 'react-redux'
 import styled from "styled-components"
 import ProductCart from '../ProductCart'
 import StripeCheckout from 'react-stripe-checkout'
@@ -8,7 +8,7 @@ import StripeCheckout from 'react-stripe-checkout'
 const CartList = props => {
 
     const cart = useSelector(state => state.shopCart.cart )
-    const qtyInCart = useSelector(state => state.shopCart.qtyInCart )
+    const qtyInCart = useSelector(state => state.shopCart.qty )
     
 
     let [total, setTotal] = useState(0);

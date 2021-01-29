@@ -34,6 +34,7 @@ const PizzaList = ({pizzas, fetchPizzas}) => {
                 
                 const desc = pizza.description
                 const description = desc.replace('<p>','').replace('</p>', '')
+                console.log(pizza)
 
                 return (
                 <ListContainer key={pizza.id}>
