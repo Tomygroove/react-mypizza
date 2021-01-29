@@ -41,6 +41,7 @@ const HeaderContainer = styled.div`
     background: #000;
     padding: 0.5rem calc((100vw - 1000px) / 2);
     z-index: 10;
+    font-family: 'Carter One', cursive;
 `
 
 const TitleLink = styled(Link)`
