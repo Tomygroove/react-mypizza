@@ -18,7 +18,7 @@ const submit = (e, formState, setErrorMessage, history) => {
         }
     }).then(res => {
         localStorage.setItem('token', res.headers['x-access-token'])
-        history.push('/home')
+        history.push('/pizzas')
     }).catch(err => {
         setErrorMessage('Une erreur est survenue')
         console.log(err)
@@ -30,7 +30,7 @@ const Login = ({history}) => {
         const token = localStorage.getItem('token')
         console.log('Login')
         if(token) {
-            history.push('/home')
+            history.push('/pizzas')
         }
     },[])
     return (
