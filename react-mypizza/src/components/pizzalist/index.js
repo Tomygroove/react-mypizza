@@ -32,10 +32,6 @@ const PizzaList = ({pizzas, fetchPizzas}) => {
             </WrapperCart>
            
             {pizzas.filter((pizza) => {
-                if(pizza.images.length == 0){
-                    let src = {'src':'https://images.pexels.com/photos/825661/pexels-photo-825661.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260'}
-                    pizza.images.push(src)
-                }
                 if(searchPizza == "") {
                     return pizza
                 } else if(pizza.name.toLowerCase().includes(searchPizza.toLowerCase())) {
@@ -45,7 +41,10 @@ const PizzaList = ({pizzas, fetchPizzas}) => {
                 
                 const desc = pizza.description
                 const description = desc.replace('<p>','').replace('</p>', '')
-                
+                if(pizza.images.length == 0){
+                    let src = {'src':'https://images.pexels.com/photos/825661/pexels-photo-825661.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260'}
+                    pizza.images.push(src)
+                }
 
                 return (
                 <ListContainer key={pizza.id}>
@@ -120,7 +119,6 @@ left: 30px
 const Wrapper = styled.div`
 display: flex;
 flex-direction: column;
-
 `
 const WrapperButton = styled.div`
 display: flex;
