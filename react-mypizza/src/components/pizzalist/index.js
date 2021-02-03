@@ -7,12 +7,6 @@ import bgimg from "../../assets/images/cart.PNG";
 
 
 const PizzaList = ({pizzas, fetchPizzas}) => {
-
-<<<<<<< HEAD
-    
-    
-=======
->>>>>>> parent of 2a52e7b4 (recherche)
     const [cartCount, setCartCount] = useState(0)
     const dispatch = useDispatch()
     const addToCartBtn = (id) => {
@@ -26,40 +20,13 @@ const PizzaList = ({pizzas, fetchPizzas}) => {
     return (
         <Wrapper>
             <WrapperCart>
-<<<<<<< HEAD
-            <GoCart href="/cart">
-            <Image></Image>
-            <Counter>{cartCount}</Counter>
-            </GoCart>
-=======
             <StyledLink to={`/cart`}>
                 <Image></Image>
                 <Counter>{cartCount}</Counter>
             </StyledLink>
->>>>>>> parent of 2a52e7b4 (recherche)
-            
             </WrapperCart>
            
             {pizzas.map((pizza, index) => {
-<<<<<<< HEAD
-                const data = pizza
-                const getValueByKey = (key, data) => {
-                    var i, len = data.length;
-                    
-                    for (i = 0; i < len; i++) {
-                        if (data[i] && data[i].hasOwnProperty(key)) {
-                            return data[i][key];
-                        }
-                    }
-                    
-                    return -1;
-                }
-                console.log(getValueByKey('src', pizza.images));
-                console.log(pizza.id)
-                const image = getValueByKey('src', pizza.images);
-=======
-                
->>>>>>> parent of 2a52e7b4 (recherche)
                 const desc = pizza.description
                 const description = desc.replace('<p>','').replace('</p>', '')
 
