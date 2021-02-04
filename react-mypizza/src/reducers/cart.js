@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
             return{
                 loading: false,
                 pizzas: action.payload,
-                cart: [],
+                cart: state.cart,
                 error: ''
             }
         case GET_DATA_ERROR:

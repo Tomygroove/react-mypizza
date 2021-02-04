@@ -1,4 +1,4 @@
-import axios from '../../node/node_modules/axios'
+import axios from 'axios'
 
 export const GET_DATA_REQUEST = 'GET_DATA_REQUEST'
 export const GET_DATA_SUCCESS = 'GET_DATA_SUCCESS'

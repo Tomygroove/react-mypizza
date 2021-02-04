@@ -9,6 +9,7 @@ const CartList = props => {
     
     const cart = useSelector(state => state.shopCart.cart )
     const qtyInCart = useSelector(state => state.shopCart.qty )
+    console.log(cart);
     
 
     let [total, setTotal] = useState(0);
