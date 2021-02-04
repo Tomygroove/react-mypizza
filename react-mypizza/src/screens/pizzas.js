@@ -1,17 +1,22 @@
 import React from 'react';
 import styled from 'styled-components'
 import PizzaList from '../components/pizzalist'
+import Header from '../components/header'
 import bgimg from "../assets/images/pizzaback.PNG";
 
 
 const Pizzas = () => {
     return (
+        <>
+        
+        <Header></Header>
         <Container>
             <WrapperHeader>
             <Image/>
             </WrapperHeader>
             <PizzaList></PizzaList>
         </Container>
+        </>
     );
 };
 
