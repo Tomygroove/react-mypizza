@@ -20,7 +20,7 @@ const Home = () => {
     
     return(
         <>
-            <Header></Header>
+        <Header></Header>
             <MainContainer>  
                 <div>       
                 {First?(<Selesizestepper></Selesizestepper>):null}

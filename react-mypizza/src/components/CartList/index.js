@@ -120,16 +120,6 @@ const StyledLink = styled(Link)`
     
 `
 
-const Column = styled.td`
-    width: calc(100%/5);
-    height:20vh;
-    text-align:${(props) => props.right? "right" : "center"};
-
-`
-
-const Table = styled.table`
-    width:100%;
-`
 const Text = styled.p`
     text-align: center;
 

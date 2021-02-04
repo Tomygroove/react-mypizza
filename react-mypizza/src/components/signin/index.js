@@ -79,7 +79,6 @@ const SigninInput = styled.input`
   color: white;
   border-radius: 24px;
   transition: 0.25s;
-
   &:focus{
   width: 250px;
   border-color: #2ecc71;
@@ -98,11 +97,9 @@ color: white;
 border-radius: 24px;
 transition: 0.25s;
 cursor: pointer;
-
 &:hover{
     background: #2ecc71;
 }
-
 `
 
 export default Signin
