@@ -4,15 +4,13 @@ import {useDispatch} from 'react-redux'
 import {addToCart, fetchPizzas, cart} from '../../actions/cart'
 import {connect} from 'react-redux'
 import bgimg from "../../assets/images/cart.PNG";
+import { Link } from 'react-router-dom'
+
 
 
 const PizzaList = ({pizzas, fetchPizzas}) => {
 
-<<<<<<< HEAD
-    
-    
-=======
->>>>>>> parent of 2a52e7b4 (recherche)
+    const [searchPizza, setSearchPizza] = useState('')
     const [cartCount, setCartCount] = useState(0)
     const dispatch = useDispatch()
     const addToCartBtn = (id) => {
@@ -26,47 +24,32 @@ const PizzaList = ({pizzas, fetchPizzas}) => {
     return (
         <Wrapper>
             <WrapperCart>
-<<<<<<< HEAD
-            <GoCart href="/cart">
-            <Image></Image>
-            <Counter>{cartCount}</Counter>
-            </GoCart>
-=======
             <StyledLink to={`/cart`}>
                 <Image></Image>
                 <Counter>{cartCount}</Counter>
             </StyledLink>
->>>>>>> parent of 2a52e7b4 (recherche)
-            
+            <StyledInput type="text" placeholder="Search..." onChange={event => {setSearchPizza(event.target.value)}}></StyledInput>
             </WrapperCart>
            
-            {pizzas.map((pizza, index) => {
-<<<<<<< HEAD
-                const data = pizza
-                const getValueByKey = (key, data) => {
-                    var i, len = data.length;
-                    
-                    for (i = 0; i < len; i++) {
-                        if (data[i] && data[i].hasOwnProperty(key)) {
-                            return data[i][key];
-                        }
-                    }
-                    
-                    return -1;
+            {pizzas.filter((pizza) => {
+                if(searchPizza == "") {
+                    return pizza
+                } else if(pizza.name.toLowerCase().includes(searchPizza.toLowerCase())) {
+                    return pizza
                 }
-                console.log(getValueByKey('src', pizza.images));
-                console.log(pizza.id)
-                const image = getValueByKey('src', pizza.images);
-=======
+            }).map((pizza, index) => {
                 
->>>>>>> parent of 2a52e7b4 (recherche)
                 const desc = pizza.description
                 const description = desc.replace('<p>','').replace('</p>', '')
+                if(pizza.images.length == 0){
+                    let src = {'src':'https://images.pexels.com/photos/825661/pexels-photo-825661.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260'}
+                    pizza.images.push(src)
+                }
 
                 return (
-                <ListContainer>
+                <ListContainer key={pizza.id}>
                     
-                    <WrapperImg src={image} />    
+                    <WrapperImg src={pizza.images[0].src} />    
                     <TittleDesc>  
                     <PizzaTittle>{pizza.name}</PizzaTittle>
                     <Desc>{description}</Desc>
@@ -98,39 +81,44 @@ const mapDispatchToProps = dispatch => {
 }
 const WrapperCart = styled.div `
 max-width: 100%;
-height: 80px;
+height: 130px;
+align-self: center;
 `
-const GoCart = styled.a `
+const StyledInput = styled.input `
+font-family: Comic Sans MS, Comic Sans, cursive;
+font-weight: 400;
+font-size: 14px;
+color: #666;
+line-height: 1.5;
+`
+const StyledLink = styled(Link) `
 text-decoration: none;
 `
 
 const Image = styled.p `
 background-image:url(${bgimg});
-width: 60px;
+width: 50px;
 height: 72px;
  background-repeat: no-repeat;
  background-size: cover;
  float: left;
-    margin-right: 10px;
     clear:both;
   
 `
 const Counter = styled.h3`
-font-family: Takeaway Sans,Avant Garde,Century Gothic,Helvetica,Arial,sans-serif;
 font-weight: 600;
 font-size: 18px;
 line-height: 1.22;
 color: #0a3847;
 position: relative;
 top: 25px;
-max-width: 85px;
-
+max-width: 105px;
+left: 30px
 `
 
 const Wrapper = styled.div`
 display: flex;
 flex-direction: column;
-background: 
 `
 const WrapperButton = styled.div`
 display: flex;
@@ -150,7 +138,6 @@ float: left;
 width: 100px;
 `
 const PizzaTittle = styled.h3`
-font-family: Takeaway Sans,Avant Garde,Century Gothic,Helvetica,Arial,sans-serif;
 font-weight: 600;
 font-size: 18px;
 line-height: 1.22;
@@ -165,7 +152,6 @@ color: #666;
 line-height: 1.5;
 `
 const Price = styled.p`
-font-family: Takeaway Sans,Avant Garde,Century Gothic,Helvetica,Arial,sans-serif;
 font-weight: 600;
 font-size: 18px;
 line-height: 1.22;
