@@ -41,8 +41,8 @@ const ProductList = props => {
                 <button onClick={decrementQty}>-</button>
                     {qty}
                 <button onClick={incrementQty}>+</button></Column>
-            <Column>{props.price.toFixed(2)}€</Column>
-            <Column>{props.price.toFixed(2) * props.qty.toFixed(2)}€</Column>
+            <Column>{props.price}€</Column>
+            <Column>{props.price * props.qty}€</Column>
             <Column>
                 <button onClick={testClick}>Supprimer</button>
             </Column>

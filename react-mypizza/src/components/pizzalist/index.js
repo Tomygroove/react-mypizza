@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
-import {useDispatch} from 'react-redux'
 import {addToCart, fetchPizzas, cart} from '../../actions/cart'
-import {connect} from 'react-redux'
+import {connect, useSelector, useDispatch} from 'react-redux'
 import bgimg from "../../assets/images/cart.PNG";
 import { Link } from 'react-router-dom'
+import Pagination from '../Pagination'
 
 
 
@@ -12,6 +12,10 @@ const PizzaList = ({pizzas, fetchPizzas}) => {
 
     const [searchPizza, setSearchPizza] = useState('')
     const [cartCount, setCartCount] = useState(0)
+    const [currentPage, setCurrentPage] = useState(1)
+    const [listsPerPage, setListsPerPage] = useState(4)
+
+   
     const dispatch = useDispatch()
     const addToCartBtn = (id) => {
         dispatch(addToCart(id))
@@ -20,23 +24,33 @@ const PizzaList = ({pizzas, fetchPizzas}) => {
     useEffect(() => {
         fetchPizzas()
     }, [])
+    const cart = useSelector(state => state.shopCart.cart )
+
+
+    const indexOfLastList = currentPage * listsPerPage
+    const indexOfFirstList = indexOfLastList - listsPerPage
+    const currentList = pizzas.slice(indexOfFirstList, indexOfLastList)
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+   
 
     return (
         <Wrapper>
             <WrapperCart>
             <StyledLink to={`/cart`}>
                 <Image></Image>
-                <Counter>{cartCount}</Counter>
+                <Counter>{cart.length}</Counter>
             </StyledLink>
             <StyledInput type="text" placeholder="Search..." onChange={event => {setSearchPizza(event.target.value)}}></StyledInput>
             </WrapperCart>
-           
-            {pizzas.filter((pizza) => {
+        
+            {currentList.filter((pizza) => {
                 if(searchPizza == "") {
                     return pizza
                 } else if(pizza.name.toLowerCase().includes(searchPizza.toLowerCase())) {
                     return pizza
                 }
+                
             }).map((pizza, index) => {
                 
                 const desc = pizza.description
@@ -47,7 +61,7 @@ const PizzaList = ({pizzas, fetchPizzas}) => {
                 }
 
                 return (
-                <ListContainer key={pizza.id}>
+                    <ListContainer key={pizza.id}>
                     
                     <WrapperImg src={pizza.images[0].src} />    
                     <TittleDesc>  
@@ -58,10 +72,14 @@ const PizzaList = ({pizzas, fetchPizzas}) => {
                     <WrapperButton>
                     <Button onClick={() => addToCartBtn(pizza.id)}>+</Button>   
                     </WrapperButton>
-                           
-                </ListContainer>
+                    
+                    
+                    </ListContainer>
+                
+                
                 ) 
             })}
+            <Pagination listPerPage={listsPerPage} totalPage={pizzas.length} paginate={paginate}></Pagination>
         </Wrapper>
     );
 };
@@ -119,6 +137,7 @@ left: 30px
 const Wrapper = styled.div`
 display: flex;
 flex-direction: column;
+padding: 20px;
 `
 const WrapperButton = styled.div`
 display: flex;
@@ -170,6 +189,7 @@ border: 2px solid #ebebeb;
 border-radius: 2px;
 margin: 8px 0;
 position: relative;
+max-width: 670px;
 `
 
 
