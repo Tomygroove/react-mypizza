@@ -34,11 +34,15 @@ const LogoutButton = styled.button`
   }
 `
 const Button = styled.button`
-  border:none;
-  padding:6px 5px 6px 5px;
-  border-radius:2px;
-  background-color: #d34836;
-  color:#15cdfc;
+color: white;
+background: #d34836;
+border-radius:2px;
+border:1px solid #d34836 ;
+height: 3.5vh;
+cursor: pointer;
+&:hover{
+  background: none;
+}
 `
 
 const Container = styled.div`
