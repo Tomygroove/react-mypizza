@@ -40,12 +40,6 @@ const Container = styled.div`
   margin-top: 30px;
   text-decoration: none;
   padding: 0 1rem;
-  cursor: pointer;
-  
-  
-  &:hover {
-      color: white;
-  }
   `
 
 const StyledForm = styled.form`
