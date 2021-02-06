@@ -5,6 +5,7 @@ import base2 from '../../assets/images/base2.png'
 import {useDispatch, useSelector} from 'react-redux'
 import {Nextstep} from '../../actions/stepper'
 import {UpdateBase} from '../../actions/stepper'
+import {BsFillBackspaceFill, BsArrowLeft} from 'react-icons/bs'
 
 
 const SelectBase = ()=>{
@@ -26,7 +27,7 @@ const SelectBase = ()=>{
         <Container>
             <Row>
                     <ConfigTaille>
-                        <Config_slide_title><span onClick={(e)=>Previous(e)}>back</span>2. Je choisis la base</Config_slide_title>
+                        <Config_slide_title><span onClick={(e)=>Previous(e)}><BsFillBackspaceFill/> </span>2. Je choisis la base</Config_slide_title>
                         {
                         Baseliste.map( base=>
                         <Item onClick={(e)=>SelectBase(e,base)}>

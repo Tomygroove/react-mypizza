@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux'
 import {Nextstep, DeleteIngredients} from '../../actions/stepper'
 import axios from 'axios'
+import {BsFillBucketFill } from 'react-icons/bs'
 
 const ConfiguratorRecap = () => {
 
@@ -45,7 +46,6 @@ const ConfiguratorRecap = () => {
             // pizza price calculating
             let price = parseInt( BaseListe.price)
             SetTotal( parseInt( price ) )
-
             IngredientsListeBasket.map( i=>{
                 price = price + parseInt(i.value.price)
                
@@ -74,6 +74,9 @@ const ConfiguratorRecap = () => {
                         }
                     }).then((response) => {
                         history.push("/pizzas")
+                         SizeBasket = ""
+                         BaseListe = []
+                         IngredientsListeBasket =[]
                     })
                     .catch((response) =>{});
             else{
@@ -130,7 +133,7 @@ const ConfiguratorRecap = () => {
                                      </Etape_New>
                                 </Row>
                                 <Row>
-                                    <CreateButton type="submit">Ajouter au panier</CreateButton>
+                                    <CreateButton type="submit">Ajouter au panier <BsFillBucketFill/></CreateButton>
                                 </Row>
                             {
                                 !error?null:
