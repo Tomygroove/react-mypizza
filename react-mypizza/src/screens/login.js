@@ -2,7 +2,6 @@ import React, { useEffect }  from 'react'
 
 import Signin from '../components/signin'
 import axios from 'axios'
-import Header from '../components/header'
 
 const submit = (e, formState, setErrorMessage, history) => {
     e.preventDefault()
@@ -36,7 +35,6 @@ const Login = ({history}) => {
     },[])
     return (
         <div>
-            <Header></Header>
             <Signin submit={submit}></Signin>
         </div>
     )
