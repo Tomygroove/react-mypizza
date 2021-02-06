@@ -64,7 +64,7 @@ const ConfiguratorRecap = () => {
 
          let data =JSON.stringify({"name":NewPizza.name,"type":"simple","regular_price":FinalPrice,"description":IngredientTostore,
                     "images":[{"src":"https://dev.ona-itconsulting.com/pizzasimulator/wp-content/uploads/2021/01/C-8528.png"}]});
-          if( NewPizza.name !=="" && FinalPrice!="" )
+          if( NewPizza.name !=="" && FinalPrice!=="" )
                     axios({
                         method: 'post',
                         url: 'https://dev.ona-itconsulting.com/pizzasimulator/wp-json/wc/v3/products?consumer_key=ck_3addb4df2eda7ea81545635fc44703f5bd24002a&consumer_secret=cs_c1b54bd4bfda5f69fa0a204f0227d2e0317fa614',
