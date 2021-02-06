@@ -21,9 +21,6 @@ const ConfiguratorRecap = () => {
     })
 
     const [error,Seterror]= useState(false) 
-
-
-
     const [NewIng, SetNewIng]= useState([])
     const [Total, SetTotal]= useState(0)
     const history = useHistory()
@@ -32,7 +29,6 @@ const ConfiguratorRecap = () => {
     
      const AddPizza = (e)=>{
          e.preventDefault();
-        
         // List of ingrefients select : IngredientsListeBasket
         // Base Value: BaseListe
         // Pizza size: SizeBasket
@@ -77,7 +73,6 @@ const ConfiguratorRecap = () => {
                             'Content-Type': 'application/json' 
                         }
                     }).then((response) => {
-                        console.log('token', response);
                         history.push("/pizzas")
                     })
                     .catch((response) =>{});
