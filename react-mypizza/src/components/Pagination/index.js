@@ -44,10 +44,17 @@ const LiStyled = styled.li `
 margin: 0 1px;
 border: 1px solid #8F8989;
 width: 25px;
-cursor: pointer;
 text-align: center;
 margin-right: 10px;
-color: #4a8cd6;
+color: white;
+    border-radius:2px;
+    border:1px solid #d34836 ;
+    height: 3.5vh;
+    cursor: pointer;
+    background: none;
+    &:hover{
+        background: #d34836;
+    }
 `
 
 const NumStyled = styled.a `

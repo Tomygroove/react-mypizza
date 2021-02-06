@@ -107,6 +107,8 @@ font-family: Comic Sans MS, Comic Sans, cursive;
 font-weight: 400;
 font-size: 14px;
 color: #666;
+border: 2px solid #d34836;
+background: none;
 line-height: 1.5;
 `
 const StyledLink = styled(Link) `
@@ -127,7 +129,7 @@ const Counter = styled.h3`
 font-weight: 600;
 font-size: 18px;
 line-height: 1.22;
-color: #0a3847;
+color: #d34836;
 position: relative;
 top: 25px;
 max-width: 105px;
@@ -138,6 +140,7 @@ const Wrapper = styled.div`
 display: flex;
 flex-direction: column;
 padding: 20px;
+background: #222222;
 `
 const WrapperButton = styled.div`
 display: flex;
@@ -147,8 +150,10 @@ const Button = styled.button`
 align-self: flex-end;
 font-weight: bold;
 font-size:20px;
-border: 2px solid #ebebeb;
+border: 1px solid #d34836;
 cursor: pointer;
+color: #d34836;
+background: none;
 `
 
 const WrapperImg = styled.img`
@@ -160,7 +165,7 @@ const PizzaTittle = styled.h3`
 font-weight: 600;
 font-size: 18px;
 line-height: 1.22;
-color: #0a3847;
+color: #d34836;
 margin-bottom: 5px;
 `
 const Desc = styled.p`
@@ -175,7 +180,7 @@ font-weight: 600;
 font-size: 18px;
 line-height: 1.22;
 letter-spacing: -.5px;
-color: #ff8000;
+color: #d34836;
 margin: auto 0 0;
 `
 
@@ -185,7 +190,7 @@ const TittleDesc = styled.div`
 `
 
 const ListContainer= styled.div`
-border: 2px solid #ebebeb;
+border: 2px solid #d34836;
 border-radius: 2px;
 margin: 8px 0;
 position: relative;
