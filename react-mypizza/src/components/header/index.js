@@ -1,28 +1,74 @@
-import React, {useState} from 'react'
-
-import { NavLink as Link} from 'react-router-dom';
+import React, {useState, useEffect} from 'react'
+import { NavLink as Link} from 'react-router-dom'
 import styled from 'styled-components'
-
 import Logout from '../logout'
 import {useDispatch} from 'react-redux'
-import bgimg from "../../assets/images/cart.PNG";
 import {FaBars} from 'react-icons/fa'
+import { ThemeProvider, createGlobalStyle } from 'styled-components'
+import storage from 'local-storage-fallback'
+import toggleImage from '../../assets/images/themetoggle.png'
+
+
+import {useTranslation} from 'react-i18next'
 
 const Header = () => {
+    const {t, i18n} = useTranslation()
+    
+    const getInitialTheme = () => {
+        const savedTheme = storage.getItem('theme')
+        return savedTheme ? JSON.parse(savedTheme) : { mode: 'dark'}
+    }
+    const [theme, setTheme] = useState(getInitialTheme);
+    
+    useEffect(() => {
+        storage.setItem('theme', JSON.stringify(theme))
+    }, [theme])
+    
+
     return (
         <>
+          <ThemeProvider theme={theme}>
+          <GlobalStyle/>
             <HeaderContainer>
                 <TitleLink to="/pizzas">My Pizza</TitleLink>
                 <NavMenu>
-                    <NavLink to="/pizzas">Liste de Pizzas</NavLink>
-                    <NavLink to="/home">Mon configurateur</NavLink>
-                    <NavLink to="/cart">Mon panier</NavLink>
+                    <NavLink to="/pizzas">{i18n.t('header.list')}</NavLink>
+                    <NavLink to="/home">{i18n.t('header.configurator')}</NavLink>
+                    <NavLink to="/cart">{i18n.t('header.panier')}</NavLink>
                 </NavMenu>
+                <ToogleTheme onClick={e => setTheme(theme.mode === 'dark' ? {mode: 'light'} : {mode: 'dark'})}/>
                     <Logout />
+                    <div>
+                        <button onClick={() => i18n.changeLanguage('fr')}>fr</button>
+                        <button onClick={() => i18n.changeLanguage('en')}>en</button>
+                    </div>
             </HeaderContainer>
+            </ThemeProvider>
         </>
     )
 }
+
+const GlobalStyle = createGlobalStyle`
+body {
+  background-color: ${props => 
+    props.theme.mode === 'dark' ? '#222' : '#c7c7cd'};
+  color: ${props => 
+    props.theme.mode === 'dark' ? '#c7c7cd' : '#222'};
+  }
+
+`
+
+const ToogleTheme = styled.p `
+background-image:url(${toggleImage});
+width: 33px;
+height: 32px;
+background-repeat: no-repeat;
+background-size: cover;
+float: left;
+clear:both;
+cursor: pointer;
+  
+`
 
 
 const HeaderContainer = styled.div`
@@ -65,6 +111,10 @@ const NavMenu = styled.div`
     display: flex;
     align-items: center;
     margin-right: -24px;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4314c3f28166f3907146403f944991382d352cc6
 `
 
 const NavLink = styled(Link)`

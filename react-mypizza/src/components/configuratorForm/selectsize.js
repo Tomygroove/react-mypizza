@@ -3,9 +3,11 @@ import styled from "styled-components"
 import {useDispatch, useSelector} from 'react-redux'
 import {Nextstep} from '../../actions/stepper'
 import {Updatesize} from '../../actions/stepper'
+import {useTranslation} from 'react-i18next'
 
 
 const Selesizestepper = ()=>{
+    const {t, i18n} = useTranslation()
     const dispatch = useDispatch()
     const First = useSelector(state=>state.step.First_step)
     const Pizzasize = useSelector(state=>state.step.Pizzasize)
@@ -23,7 +25,7 @@ const Selesizestepper = ()=>{
         <Container>
             <Row>
                 <ConfigTaille>
-                    <Config_slide_title>1. Je choisis ma taille</Config_slide_title>
+                    <Config_slide_title>{i18n.t('configurateurform.selectsize.title')}</Config_slide_title>
                         {
                             Pizzasize.map(size=>
                         <Item onClick={(e)=>SelectSize(e,size)} key={size.id}>

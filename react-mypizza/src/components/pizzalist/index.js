@@ -5,11 +5,12 @@ import {connect, useSelector, useDispatch} from 'react-redux'
 import bgimg from "../../assets/images/cart.PNG";
 import { Link } from 'react-router-dom'
 import Pagination from '../Pagination'
+import {useTranslation} from 'react-i18next'
 
 
 
 const PizzaList = ({pizzas, fetchPizzas}) => {
-
+    const {t, i18n} = useTranslation()
     const [searchPizza, setSearchPizza] = useState('')
     const [cartCount, setCartCount] = useState(0)
     const [currentPage, setCurrentPage] = useState(1)
@@ -24,7 +25,7 @@ const PizzaList = ({pizzas, fetchPizzas}) => {
     useEffect(() => {
         fetchPizzas()
     }, [])
-    const cart = useSelector(state => state.shopCart.cart )
+    const cart = useSelector(state => state.shopCart.cart)
 
 
     const indexOfLastList = currentPage * listsPerPage
@@ -36,12 +37,13 @@ const PizzaList = ({pizzas, fetchPizzas}) => {
 
     return (
         <Wrapper>
+            <Title>My Pizza</Title>
             <WrapperCart>
             <StyledLink to={`/cart`}>
                 <Image></Image>
                 <Counter>{cart.length}</Counter>
             </StyledLink>
-            <StyledInput type="text" placeholder="Search..." onChange={event => {setSearchPizza(event.target.value)}}></StyledInput>
+            <StyledInput type="text" placeholder={t('pizzalist.search')} onChange={event => {setSearchPizza(event.target.value)}}></StyledInput>
             </WrapperCart>
         
             {currentList.filter((pizza) => {
@@ -111,6 +113,13 @@ border: 2px solid #d34836;
 background: none;
 line-height: 1.5;
 `
+const Title = styled.h1`
+  text-align: center;
+  color: #d34836 ;
+  margin-top: 30px;
+  text-decoration: none;
+  padding: 0 1rem;
+  `
 const StyledLink = styled(Link) `
 text-decoration: none;
 `
@@ -119,11 +128,11 @@ const Image = styled.p `
 background-image:url(${bgimg});
 width: 50px;
 height: 72px;
- background-repeat: no-repeat;
- background-size: cover;
- float: left;
-    clear:both;
-  
+background-repeat: no-repeat;
+background-size: cover;
+float: left;
+clear:both;
+color:#d34836;  
 `
 const Counter = styled.h3`
 font-weight: 600;
@@ -140,7 +149,6 @@ const Wrapper = styled.div`
 display: flex;
 flex-direction: column;
 padding: 20px;
-background: #222222;
 `
 const WrapperButton = styled.div`
 display: flex;
@@ -172,7 +180,7 @@ const Desc = styled.p`
 font-family: Comic Sans MS, Comic Sans, cursive;
 font-weight: 400;
 font-size: 14px;
-color: #666;
+color: #d34836;
 line-height: 1.5;
 `
 const Price = styled.p`

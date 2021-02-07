@@ -46,7 +46,6 @@ border: 1px solid #8F8989;
 width: 25px;
 text-align: center;
 margin-right: 10px;
-color: white;
     border-radius:2px;
     border:1px solid #d34836 ;
     height: 3.5vh;
