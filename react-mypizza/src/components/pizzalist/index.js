@@ -142,7 +142,7 @@ color: #d34836;
 position: relative;
 top: 25px;
 max-width: 105px;
-left: 30px
+left: 30px;
 `
 
 const Wrapper = styled.div`
