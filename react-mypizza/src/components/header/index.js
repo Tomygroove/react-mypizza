@@ -67,7 +67,6 @@ background-size: cover;
 float: left;
 clear:both;
 cursor: pointer;
-  
 `
 
 

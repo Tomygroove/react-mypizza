@@ -3,7 +3,7 @@
         "header": {
             "list": "Liste des pizzas",
             "configurator": "Mon configurateur",
-            "panier": "mon panier",
+            "panier": "Mon panier",
             "logout": "Se déconnecter",
             "login": "Se connecter"
         },
@@ -35,7 +35,7 @@
             "emptyMsg": "Votre panier est vide ..."
         },
         "productcart":{
-            "supprimer": "supprimer"
+            "supprimer": "Supprimer"
         },
         "login":{
             "titre": "Se connecter",

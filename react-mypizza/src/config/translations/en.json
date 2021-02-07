@@ -1,9 +1,9 @@
 {
     "translation": {
         "header": {
-            "list" : "list of pizzas",
+            "list" : "List of pizzas",
             "configurator": "My configurator",
-            "panier": "shopping cart",
+            "panier": "Shopping cart",
             "logout": "Logout",
             "login": "Login"
         },
@@ -34,7 +34,7 @@
             "emptyMsg": "Your cart is empty ..."
         },
         "productcart":{
-            "supprimer": "delete"
+            "supprimer": "Delete"
         },
         "login":{
             "titre": "Login",

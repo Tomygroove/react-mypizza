@@ -5,22 +5,26 @@ import ProductCart from '../ProductCart'
 import StripeCheckout from 'react-stripe-checkout'
 import { NavLink as Link} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
+import ClipLoader from "react-spinners/ClipLoader";
+import { css } from "@emotion/core";
 
 const CartList = props => {
     const {t, i18n} = useTranslation()
     const cart = useSelector(state => state.shopCart.cart )
     const qtyInCart = useSelector(state => state.shopCart.qty )
+    const [isLoading, setLoading] = useState(true)
     
     console.log(cart);
     let [total, setTotal] = useState(0);
 
     useEffect(()=>{
-        cart.forEach(product => {
-            let totalProduct = product.price * product.qty;
-            setTotal(total += totalProduct)
-            
-        });
-
+        setTimeout(() => {
+            cart.forEach(product => {
+                let totalProduct = product.price * product.qty;
+                setTotal(total += totalProduct)
+            });
+            setLoading(false)
+        }, 1000)
     }, [])
     const handleToken = (token, adresses) => {
         console.log({token , adresses})
@@ -29,6 +33,10 @@ const CartList = props => {
         product.description = product.description.replace('<p>','').replace('</p>', '')
     
     )
+
+    if(isLoading) {
+        return(<ClipLoader color={"#D34836"} loading={isLoading} css={override} size={50}/>)
+    }
 
     if(cart.length != 0){
         return (
@@ -97,6 +105,12 @@ const StyledBtn = styled.button`
         color:white;
     }
 `
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+`;
+
 const CartFooterContainer = styled.div`
     margin: 0% 12.5%;
     display: flex;

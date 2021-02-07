@@ -1,4 +1,4 @@
-import React,{useState,} from 'react';
+import React, {useEffect, useState,} from 'react';
 import styled from 'styled-components'
 import { Link, useHistory } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux'
@@ -6,6 +6,8 @@ import {Nextstep, DeleteIngredients} from '../../actions/stepper'
 import axios from 'axios'
 import {BsFillBucketFill } from 'react-icons/bs'
 import {useTranslation} from 'react-i18next'
+import ClipLoader from "react-spinners/ClipLoader";
+import { css } from "@emotion/core";
 
 const ConfiguratorRecap = () => {
     const {t, i18n} = useTranslation()
@@ -26,9 +28,7 @@ const ConfiguratorRecap = () => {
     const [NewIng, SetNewIng]= useState([])
     const [Total, SetTotal]= useState(0)
     const history = useHistory()
-    
 
-    
      const AddPizza = (e)=>{
         
          e.preventDefault();
@@ -63,10 +63,10 @@ const ConfiguratorRecap = () => {
                 IngredientTostore+=x.value.name+" , "
             })
 
-
-         let data =JSON.stringify({"name":NewPizza.name,"type":"simple","regular_price":FinalPrice,"description":IngredientTostore,
+            
+                let data =JSON.stringify({"name":NewPizza.name,"type":"simple","regular_price":FinalPrice,"description":IngredientTostore,
                     "images":[{"src":"https://dev.ona-itconsulting.com/pizzasimulator/wp-content/uploads/2021/01/C-8528.png"}]});
-          if( NewPizza.name !=="" && FinalPrice!=="" )
+                if( NewPizza.name !=="" && FinalPrice!=="" )
                     axios({
                         method: 'post',
                         url: 'https://dev.ona-itconsulting.com/pizzasimulator/wp-json/wc/v3/products?consumer_key=ck_3addb4df2eda7ea81545635fc44703f5bd24002a&consumer_secret=cs_c1b54bd4bfda5f69fa0a204f0227d2e0317fa614',
@@ -76,17 +76,19 @@ const ConfiguratorRecap = () => {
                         }
                     }).then((response) => {
                         history.push("/pizzas")
-                         SizeBasket = ""
-                         BaseListe = []
-                         IngredientsListeBasket =[]
+                        SizeBasket = ""
+                        BaseListe = []
+                        IngredientsListeBasket =[]
                     })
                     .catch((response) =>{});
-            else{
-                Seterror( true )
-            }
-       
+                else{
+                    Seterror( true )
                 }
+        }
 
+        
+
+                
     const DeleteIngredient=(e,id)=>{
         dispatch(DeleteIngredients(id))
     }
@@ -141,7 +143,7 @@ const ConfiguratorRecap = () => {
                                 !error?null:
                                 <Row>
                                     <Etape_New>
-                                        <span>veuillez remplir les champs obligatoires</span>
+                                        <span>Veuillez remplir les champs obligatoires</span>
                                     </Etape_New>
                                 </Row>
                             }
@@ -159,7 +161,6 @@ const FormStyled = styled.form`
         width:20%;
     }
 `
-
 
 const Recap = styled.div`
     margin:0;
