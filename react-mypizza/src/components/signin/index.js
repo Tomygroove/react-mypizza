@@ -29,12 +29,12 @@ const Signin = ({submit}) => {
     );
 };
 
+
 const LangContainer = styled.div`
   display: flex;
   justify-content: flex-end;
 
 `
-
 const Container = styled.div`
     width:100%;
     height:100vh;
@@ -48,7 +48,7 @@ const Container = styled.div`
 
   const Title = styled.h1`
   text-align: center;
-  color: #3498db;
+  color: #d34836 ;
   margin-top: 30px;
   text-decoration: none;
   padding: 0 1rem;
@@ -78,7 +78,7 @@ const SigninInput = styled.input`
   display: block;
   margin: 20px auto;
   text-align: center;
-  border: 2px solid #3498db;
+  border: 2px solid #d34836;
   padding: 14px 10px;
   width: 200px;
   outline: none;
@@ -87,7 +87,7 @@ const SigninInput = styled.input`
   transition: 0.25s;
   &:focus{
   width: 250px;
-  border-color: #2ecc71;
+  border-color: #d34836;
 }
 `
 const SigninSubmit = styled.input`
@@ -96,7 +96,7 @@ background: none;
 display: block;
 margin: 20px auto;
 text-align: center;
-border: 2px solid #2ecc71;
+border: 2px solid #d34836;
 padding: 14px 40px;
 outline: none;
 color: white;
@@ -104,7 +104,7 @@ border-radius: 24px;
 transition: 0.25s;
 cursor: pointer;
 &:hover{
-    background: #2ecc71;
+    background: #d34836;
 }
 `
 
