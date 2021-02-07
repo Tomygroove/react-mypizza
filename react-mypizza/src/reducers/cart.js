@@ -63,7 +63,7 @@ export default (state = initialState, action) => {
 
             return{
                 ...state,
-                cart: newSty
+                cart: newQty
             }
         case DECREMENT_QTY:
             console.log(action)

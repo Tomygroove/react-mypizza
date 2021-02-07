@@ -30,7 +30,7 @@
         "cart":{
             "titre":"Shopping cart",
             "achat":"Buy now",
-            "retourList": "Go back to shopping",
+            "retourList": "< Go back to shopping",
             "emptyMsg": "Your cart is empty ..."
         },
         "productcart":{

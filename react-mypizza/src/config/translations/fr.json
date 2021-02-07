@@ -31,7 +31,7 @@
         "cart":{
             "titre":"Votre panier",
             "achat":"Acheter maintenant",
-            "retourList": "Retourner faire mes achats",
+            "retourList": "< Retourner faire mes achats",
             "emptyMsg": "Votre panier est vide ..."
         },
         "productcart":{
