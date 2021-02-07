@@ -8,7 +8,6 @@ import axios from 'axios'
 import firebase from './firebase';
 import notification from "./assets/images/notification.png"
 
-
 function App() {
   
   React.useEffect(()=>{
