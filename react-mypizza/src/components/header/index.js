@@ -38,10 +38,10 @@ const Header = () => {
                 </NavMenu>
                 <ToogleTheme onClick={e => setTheme(theme.mode === 'dark' ? {mode: 'light'} : {mode: 'dark'})}/>
                     <Logout />
-                    <div>
-                        <button onClick={() => i18n.changeLanguage('fr')}>fr</button>
-                        <button onClick={() => i18n.changeLanguage('en')}>en</button>
-                    </div>
+                    <Langue>
+                        <BtnLangue onClick={() => i18n.changeLanguage('fr')}>fr</BtnLangue>
+                        <BtnLangue onClick={() => i18n.changeLanguage('en')}>en</BtnLangue>
+                    </Langue>
             </HeaderContainer>
             </ThemeProvider>
         </>
@@ -56,6 +56,28 @@ body {
     props.theme.mode === 'dark' ? '#c7c7cd' : '#222'};
   }
 
+`
+const Langue = styled.div`
+display: flex;
+align-items: center;
+padding: 0 1rem;
+`
+
+const BtnLangue = styled.button`
+color: white;
+margin: 0 1px;
+border: 1px solid #8F8989;
+width: 25px;
+text-align: center;
+margin-right: 10px;
+    border-radius:2px;
+    border:1px solid #d34836 ;
+    height: 3vh;
+    cursor: pointer;
+    background: none;
+    &:hover{
+        background: #d34836;
+    }
 `
 
 const ToogleTheme = styled.p `
