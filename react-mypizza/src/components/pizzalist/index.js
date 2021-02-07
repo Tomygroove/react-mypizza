@@ -24,7 +24,7 @@ const PizzaList = ({pizzas, fetchPizzas}) => {
     useEffect(() => {
         fetchPizzas()
     }, [])
-    const cart = useSelector(state => state.shopCart.cart )
+    const cart = useSelector(state => state.shopCart.cart)
 
 
     const indexOfLastList = currentPage * listsPerPage
@@ -117,17 +117,17 @@ const Image = styled.p `
 background-image:url(${bgimg});
 width: 50px;
 height: 72px;
- background-repeat: no-repeat;
- background-size: cover;
- float: left;
-    clear:both;
-  
+background-repeat: no-repeat;
+background-size: cover;
+float: left;
+clear:both;
+color:#d34836;  
 `
 const Counter = styled.h3`
 font-weight: 600;
 font-size: 18px;
 line-height: 1.22;
-color: #0a3847;
+color: #d34836;
 position: relative;
 top: 25px;
 max-width: 105px;
@@ -147,7 +147,7 @@ const Button = styled.button`
 align-self: flex-end;
 font-weight: bold;
 font-size:20px;
-border: 2px solid #ebebeb;
+border: 2px solid #d34836;
 cursor: pointer;
 `
 
@@ -160,14 +160,14 @@ const PizzaTittle = styled.h3`
 font-weight: 600;
 font-size: 18px;
 line-height: 1.22;
-color: #0a3847;
+color: #d34836;
 margin-bottom: 5px;
 `
 const Desc = styled.p`
 font-family: Comic Sans MS, Comic Sans, cursive;
 font-weight: 400;
 font-size: 14px;
-color: #666;
+color: #d34836;
 line-height: 1.5;
 `
 const Price = styled.p`
@@ -185,7 +185,7 @@ const TittleDesc = styled.div`
 `
 
 const ListContainer= styled.div`
-border: 2px solid #ebebeb;
+border: 2px solid #d34836;
 border-radius: 2px;
 margin: 8px 0;
 position: relative;

@@ -99,7 +99,6 @@ const Container = styled.div`
     display:flex;
     padding-top:20px;
     flex-direction:column;
-    background: #E5E5E5;
 `
 const Title = styled.h1`
     text-align: center;
