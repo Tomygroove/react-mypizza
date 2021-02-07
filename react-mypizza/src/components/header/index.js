@@ -8,23 +8,17 @@ import {useDispatch} from 'react-redux'
 import bgimg from "../../assets/images/cart.PNG";
 import {FaBars} from 'react-icons/fa'
 
-// const cartCount = useState(0)
-
 const Header = () => {
     return (
         <>
             <HeaderContainer>
                 <TitleLink to="/pizzas">My Pizza</TitleLink>
-                {/* <Bars /> */}
                 <NavMenu>
                     <NavLink to="/pizzas">Liste de Pizzas</NavLink>
                     <NavLink to="/home">Mon configurateur</NavLink>
                     <NavLink to="/cart">Mon panier</NavLink>
                 </NavMenu>
-                {/* <LogoutBtn> */}
-                    {/* <LogoutBtnLink to="/home">OUi</LogoutBtnLink> */}
                     <Logout />
-                {/* </LogoutBtn> */}
             </HeaderContainer>
         </>
     )
@@ -71,9 +65,6 @@ const NavMenu = styled.div`
     display: flex;
     align-items: center;
     margin-right: -24px;
-    // @media screen and (max-width: 768px) {
-    //     display: none;
-    // }
 `
 
 const NavLink = styled(Link)`
