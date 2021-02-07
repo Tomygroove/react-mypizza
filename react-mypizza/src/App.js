@@ -4,13 +4,6 @@ import Routes from './config/router'
 import {store} from './config/store'
 import axios from 'axios'
 import firebase from './firebase';
-import notification from "./assets/images/notification.png"
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 808f9f25c77dd86390015cc9f129398f5de269b9
 function App() {
   
   React.useEffect(()=>{
