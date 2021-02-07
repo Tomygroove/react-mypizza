@@ -49,7 +49,7 @@ const CartList = props => {
                        
                 </CartContainer>
                 <CartFooterContainer>
-                    <StyledLink to="/pizzas">retourner faire mes achats</StyledLink>
+                    <StyledLink to="/pizzas">Continuer mes achats</StyledLink>
                     <StripeCheckout 
                         stripeKey="pk_test_51HqFjsLExcHBUVQnWuGRxHmsg1wX31Duka1ZqhgovRtSaS22aUPnURuK3IY34zc7cpadks9N4ViWiFK2XsHSTuLk00PjxQ6fyv"
                         token={handleToken}
@@ -78,11 +78,15 @@ const CartList = props => {
     
 };
 const StyledBtn = styled.button`
-    color:#d34836;
+    color: #fe7c6a;
     border-radius:2px;
     border:1px solid #d34836 ;
-    height: 5vh;
+    height: 3.5vh;
     cursor: pointer;
+    background: none;
+    &:hover{
+        background: #d34836;
+    }
 `
 const CartFooterContainer = styled.div`
     margin: 0% 12.5%;
@@ -103,6 +107,7 @@ const Container = styled.div`
 const Title = styled.h1`
     text-align: center;
     font-family: 'Carter One', cursive;
+    color: #d34836;
 `
 const CartContainer = styled.div `
 
@@ -110,6 +115,7 @@ const CartContainer = styled.div `
     justify-content: space-between;
     flex-wrap: wrap;
     margin: 5% 10%;
+    color: #d34836;
  
 
 `

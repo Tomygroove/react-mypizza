@@ -74,7 +74,7 @@ const HeaderContainer = styled.div`
     height: 60px;
     display: flex;
     justify-content: space-between;
-    background: #000;
+    background: #191919;
     padding: 0.5rem calc((100vw - 1000px) / 2);
     z-index: 10;
     font-family: 'Carter One', cursive;
@@ -124,7 +124,7 @@ padding: 0 1rem;
 height: 100%;
 cursor: pointer;
 &.active {
-    color: #15cdfc;
+    color: #d34836;
 }
 `
 

@@ -36,6 +36,7 @@ const PizzaList = ({pizzas, fetchPizzas}) => {
 
     return (
         <Wrapper>
+            <Title>My Pizza</Title>
             <WrapperCart>
             <StyledLink to={`/cart`}>
                 <Image></Image>
@@ -107,8 +108,17 @@ font-family: Comic Sans MS, Comic Sans, cursive;
 font-weight: 400;
 font-size: 14px;
 color: #666;
+border: 2px solid #d34836;
+background: none;
 line-height: 1.5;
 `
+const Title = styled.h1`
+  text-align: center;
+  color: #d34836 ;
+  margin-top: 30px;
+  text-decoration: none;
+  padding: 0 1rem;
+  `
 const StyledLink = styled(Link) `
 text-decoration: none;
 `
@@ -147,8 +157,10 @@ const Button = styled.button`
 align-self: flex-end;
 font-weight: bold;
 font-size:20px;
-border: 2px solid #d34836;
+border: 1px solid #d34836;
 cursor: pointer;
+color: #d34836;
+background: none;
 `
 
 const WrapperImg = styled.img`
@@ -175,7 +187,7 @@ font-weight: 600;
 font-size: 18px;
 line-height: 1.22;
 letter-spacing: -.5px;
-color: #ff8000;
+color: #d34836;
 margin: auto 0 0;
 `
 

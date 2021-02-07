@@ -18,11 +18,10 @@ const Routes = () => {
         <Router>
             <Switch>
                 <Route exact path="/" component={Login} />
-                <Route path="/home" component={Home} />
+                <Route path="/configurator" component={Home} />
                 <Route path="/pizzas" component={Pizzas} />
-                <Route path="/configurator" component={Configurator} />
                 <Route path="/cart" component={Cart} />
-                <Redirect to="/home" ></Redirect>
+                <Redirect to="/configurator" ></Redirect>
             </Switch>
         </Router>
     );

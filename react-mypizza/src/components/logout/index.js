@@ -23,22 +23,29 @@ const Logout = () => {
 }
 
 const LogoutButton = styled.button`
-    border:none;
-    padding:6px 5px 6px 5px;
+    color: white;
+    background: none;
     border-radius:2px;
-    background:#d34836;
-    color:#2A2F32;
+    border:1px solid #d34836 ;
+    height: 3.5vh;
+    cursor: pointer;
+    &:hover{
+      background: #d34836;
+  }
 `
 const Button = styled.button`
-  border:none;
-  padding:6px 5px 6px 5px;
-  border-radius:2px;
-  background-color: #3498db;
-  color:#15cdfc;
+color: white;
+background: #d34836;
+border-radius:2px;
+border:1px solid #d34836 ;
+height: 3.5vh;
+cursor: pointer;
+&:hover{
+  background: none;
+}
 `
 
 const Container = styled.div`
-  // float: right;
   display: flex;
   align-items: center;
   padding: 0 1rem;

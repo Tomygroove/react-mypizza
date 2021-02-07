@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux'
 import {Nextstep, DeleteIngredients} from '../../actions/stepper'
 import axios from 'axios'
+import {BsFillBucketFill } from 'react-icons/bs'
 
 const ConfiguratorRecap = () => {
 
@@ -20,6 +21,7 @@ const ConfiguratorRecap = () => {
         "type":""
     })
 
+    const [error,Seterror]= useState(false) 
     const [NewIng, SetNewIng]= useState([])
     const [Total, SetTotal]= useState(0)
     const history = useHistory()
@@ -28,7 +30,6 @@ const ConfiguratorRecap = () => {
     
      const AddPizza = (e)=>{
          e.preventDefault();
-        
         // List of ingrefients select : IngredientsListeBasket
         // Base Value: BaseListe
         // Pizza size: SizeBasket
@@ -45,8 +46,6 @@ const ConfiguratorRecap = () => {
             // pizza price calculating
             let price = parseInt( BaseListe.price)
             SetTotal( parseInt( price ) )
-
-            console.log( IngredientsListeBasket ) 
             IngredientsListeBasket.map( i=>{
                 price = price + parseInt(i.value.price)
                
@@ -55,7 +54,7 @@ const ConfiguratorRecap = () => {
 
             let FinalPrice = ""
             FinalPrice += price
-            //alert( Total )
+           
 
             //Add => inredient Data
             arrFiltered.forEach( x=>{
@@ -65,33 +64,27 @@ const ConfiguratorRecap = () => {
 
          let data =JSON.stringify({"name":NewPizza.name,"type":"simple","regular_price":FinalPrice,"description":IngredientTostore,
                     "images":[{"src":"https://dev.ona-itconsulting.com/pizzasimulator/wp-content/uploads/2021/01/C-8528.png"}]});
-          axios({
-            method: 'post',
-            url: 'https://dev.ona-itconsulting.com/pizzasimulator/wp-json/wc/v3/products?consumer_key=ck_3addb4df2eda7ea81545635fc44703f5bd24002a&consumer_secret=cs_c1b54bd4bfda5f69fa0a204f0227d2e0317fa614',
-            data:data,
-            headers: {
-                'Content-Type': 'application/json' 
+          if( NewPizza.name !=="" && FinalPrice!=="" )
+                    axios({
+                        method: 'post',
+                        url: 'https://dev.ona-itconsulting.com/pizzasimulator/wp-json/wc/v3/products?consumer_key=ck_3addb4df2eda7ea81545635fc44703f5bd24002a&consumer_secret=cs_c1b54bd4bfda5f69fa0a204f0227d2e0317fa614',
+                        data:data,
+                        headers: {
+                            'Content-Type': 'application/json' 
+                        }
+                    }).then((response) => {
+                        history.push("/pizzas")
+                         SizeBasket = ""
+                         BaseListe = []
+                         IngredientsListeBasket =[]
+                    })
+                    .catch((response) =>{});
+            else{
+                Seterror( true )
             }
-          }).then((response) => {
-            console.log('token', response);
-            history.push("/pizzas")
-        })
-        .catch((response) => console.log('error', response));
-   
-        }
+       
+                }
 
-        
-
-
-
-
-
-
-
-
-
-    
-    
     const DeleteIngredient=(e,id)=>{
         dispatch(DeleteIngredients(id))
     }
@@ -140,8 +133,17 @@ const ConfiguratorRecap = () => {
                                      </Etape_New>
                                 </Row>
                                 <Row>
-                                    <CreateButton type="submit">Ajouter au panier</CreateButton>
+                                    <CreateButton type="submit">Ajouter au panier <BsFillBucketFill/></CreateButton>
                                 </Row>
+                            {
+                                !error?null:
+                                <Row>
+                                    <Etape_New>
+                                        <span>veuillez remplir les champs obligatoires</span>
+                                    </Etape_New>
+                                </Row>
+                            }
+
                             </Recap>
                         </FormStyled>
         </>
