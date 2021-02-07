@@ -7,12 +7,9 @@
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.0",
     "axios": "^0.21.1",
-<<<<<<< HEAD
     "i18next": "^19.8.7",
-=======
     "firebase": "^8.2.6",
     "local-storage-fallback": "^4.1.1",
->>>>>>> f5549d91bef3d9521e2a853c426ad235e2ec9741
     "node_module": "0.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

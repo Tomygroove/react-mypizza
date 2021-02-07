@@ -13,22 +13,22 @@ import {useTranslation} from 'react-i18next'
 
 // const cartCount = useState(0)
 
+
+ 
+
 const Header = () => {
     const {t, i18n} = useTranslation()
-
-const getInitialTheme = () => {
-    const savedTheme = storage.getItem('theme')
-    return savedTheme ? JSON.parse(savedTheme) : { mode: 'dark'}
-}
-
-const Header = () => {
-
+    
+    const getInitialTheme = () => {
+        const savedTheme = storage.getItem('theme')
+        return savedTheme ? JSON.parse(savedTheme) : { mode: 'dark'}
+    }
     const [theme, setTheme] = useState(getInitialTheme);
-
+    
     useEffect(() => {
         storage.setItem('theme', JSON.stringify(theme))
     }, [theme])
-
+    
 
     return (
         <>
@@ -66,7 +66,7 @@ body {
   color: ${props => 
     props.theme.mode === 'dark' ? '#c7c7cd' : '#222'};
   }
-}
+
 `
 
 const ToogleTheme = styled.p `
@@ -122,9 +122,7 @@ const NavMenu = styled.div`
     display: flex;
     align-items: center;
     margin-right: -24px;
-    // @media screen and (max-width: 768px) {
-    //     display: none;
-    // }
+
 `
 
 const NavLink = styled(Link)`
