@@ -78,7 +78,7 @@ const CartList = props => {
     
 };
 const StyledBtn = styled.button`
-    color: white;
+    color: #fe7c6a;
     border-radius:2px;
     border:1px solid #d34836 ;
     height: 3.5vh;
@@ -103,7 +103,6 @@ const Container = styled.div`
     display:flex;
     padding-top:20px;
     flex-direction:column;
-    background: #222222;
 `
 const Title = styled.h1`
     text-align: center;

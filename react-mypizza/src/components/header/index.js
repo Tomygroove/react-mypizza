@@ -1,18 +1,32 @@
-import React, {useState} from 'react'
-
-import { NavLink as Link} from 'react-router-dom';
+import React, {useState, useEffect} from 'react'
+import { NavLink as Link} from 'react-router-dom'
 import styled from 'styled-components'
-
 import Logout from '../logout'
 import {useDispatch} from 'react-redux'
-import bgimg from "../../assets/images/cart.PNG";
 import {FaBars} from 'react-icons/fa'
+import { ThemeProvider, createGlobalStyle } from 'styled-components'
+import storage from 'local-storage-fallback'
+import toggleImage from '../../assets/images/themetoggle.png'
 
-// const cartCount = useState(0)
+
+const getInitialTheme = () => {
+    const savedTheme = storage.getItem('theme')
+    return savedTheme ? JSON.parse(savedTheme) : { mode: 'dark'}
+}
 
 const Header = () => {
+
+    const [theme, setTheme] = useState(getInitialTheme);
+
+    useEffect(() => {
+        storage.setItem('theme', JSON.stringify(theme))
+    }, [theme])
+
+    
     return (
         <>
+          <ThemeProvider theme={theme}>
+          <GlobalStyle/>
             <HeaderContainer>
                 <TitleLink to="/pizzas">My Pizza</TitleLink>
                 {/* <Bars /> */}
@@ -21,14 +35,39 @@ const Header = () => {
                     <NavLink to="/home">Mon configurateur</NavLink>
                     <NavLink to="/cart">Mon panier</NavLink>
                 </NavMenu>
+                <ToogleTheme onClick={e => setTheme(theme.mode === 'dark' ? {mode: 'light'} : {mode: 'dark'})}/>
+               
                 {/* <LogoutBtn> */}
                     {/* <LogoutBtnLink to="/home">OUi</LogoutBtnLink> */}
                     <Logout />
                 {/* </LogoutBtn> */}
             </HeaderContainer>
+            </ThemeProvider>
         </>
     )
 }
+
+const GlobalStyle = createGlobalStyle`
+body {
+  background-color: ${props => 
+    props.theme.mode === 'dark' ? '#222' : '#c7c7cd'};
+  color: ${props => 
+    props.theme.mode === 'dark' ? '#c7c7cd' : '#222'};
+  }
+}
+`
+
+const ToogleTheme = styled.p `
+background-image:url(${toggleImage});
+width: 33px;
+height: 32px;
+background-repeat: no-repeat;
+background-size: cover;
+float: left;
+clear:both;
+cursor: pointer;
+  
+`
 
 
 const HeaderContainer = styled.div`
