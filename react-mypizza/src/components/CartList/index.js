@@ -4,9 +4,10 @@ import styled from "styled-components"
 import ProductCart from '../ProductCart'
 import StripeCheckout from 'react-stripe-checkout'
 import { NavLink as Link} from 'react-router-dom';
+import {useTranslation} from 'react-i18next';
 
 const CartList = props => {
-    
+    const {t, i18n} = useTranslation()
     const cart = useSelector(state => state.shopCart.cart )
     const qtyInCart = useSelector(state => state.shopCart.qty )
     console.log(cart);
@@ -29,7 +30,7 @@ const CartList = props => {
     if(cart.length != 0){
         return (
             <Container>
-                <Title>Votre panier</Title>
+                <Title>{i18n.t('cart.titre')}</Title>
                 <CartContainer>
                 
                         {cart.map(product => 
@@ -49,7 +50,7 @@ const CartList = props => {
                        
                 </CartContainer>
                 <CartFooterContainer>
-                    <StyledLink to="/pizzas">retourner faire mes achats</StyledLink>
+                    <StyledLink to="/pizzas">{i18n.t('cart.retourList')}</StyledLink>
                     <StripeCheckout 
                         stripeKey="pk_test_51HqFjsLExcHBUVQnWuGRxHmsg1wX31Duka1ZqhgovRtSaS22aUPnURuK3IY34zc7cpadks9N4ViWiFK2XsHSTuLk00PjxQ6fyv"
                         token={handleToken}
@@ -57,7 +58,7 @@ const CartList = props => {
                         shippingAddress
                         amout= {total.toFixed(2)}
                         >
-                        <StyledBtn>Acheter maintenant</StyledBtn>
+                        <StyledBtn>{i18n.t('cart.achat')}</StyledBtn>
                     </StripeCheckout>
 
                 </CartFooterContainer>
@@ -68,9 +69,9 @@ const CartList = props => {
     else{
         return (
             <Container>
-                <Title>Votre panier</Title>
+                <Title>{i18n.t('cart.titre')}</Title>
                 <CartContainer>
-                    <Text>Votre panier est vide ...</Text>
+                    <Text>{i18n.t('cart.emptyMsg')}</Text>
                 </CartContainer>
             </Container>
         );

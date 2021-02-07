@@ -6,11 +6,10 @@ import {useDispatch, useSelector} from 'react-redux'
 import {Nextstep,SetIngredients} from '../../actions/stepper'
 import { uid } from 'uid';
 import {BsFillBackspaceFill, BsArrowLeft} from 'react-icons/bs'
-
-
+import {useTranslation} from 'react-i18next';
 
 const SelectIngredients = ()=>{
-    
+    const {t, i18n} = useTranslation()
     const dispatch = useDispatch()
     const First = useSelector(state=>state.step.First_step)
     const IngredientsListes = useSelector(state=>state.step.IngredientsListes)
@@ -35,7 +34,7 @@ const SelectIngredients = ()=>{
         <Container>
             <Row>
                     <ConfigTaille>
-                        <Config_slide_title><span onClick={(e)=>Previous(e)}><BsFillBackspaceFill/> </span>3. Je choisis mes ingredients</Config_slide_title>
+                        <Config_slide_title><span onClick={(e)=>Previous(e)}><BsFillBackspaceFill/> </span>{i18n.t('configurateurform.selecttopping.title')}</Config_slide_title>
                         {
                             IngredientsListes.map(ingredient=>
                         <Item onClick={(e)=>SelectIngredient(e,ingredient)}>

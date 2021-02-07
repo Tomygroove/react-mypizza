@@ -5,11 +5,12 @@ import {connect, useSelector, useDispatch} from 'react-redux'
 import bgimg from "../../assets/images/cart.PNG";
 import { Link } from 'react-router-dom'
 import Pagination from '../Pagination'
+import {useTranslation} from 'react-i18next'
 
 
 
 const PizzaList = ({pizzas, fetchPizzas}) => {
-
+    const {t, i18n} = useTranslation()
     const [searchPizza, setSearchPizza] = useState('')
     const [cartCount, setCartCount] = useState(0)
     const [currentPage, setCurrentPage] = useState(1)
@@ -41,7 +42,7 @@ const PizzaList = ({pizzas, fetchPizzas}) => {
                 <Image></Image>
                 <Counter>{cart.length}</Counter>
             </StyledLink>
-            <StyledInput type="text" placeholder="Search..." onChange={event => {setSearchPizza(event.target.value)}}></StyledInput>
+            <StyledInput type="text" placeholder={t('pizzalist.search')} onChange={event => {setSearchPizza(event.target.value)}}></StyledInput>
             </WrapperCart>
         
             {currentList.filter((pizza) => {

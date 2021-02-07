@@ -1,17 +1,17 @@
 import i18n from 'i18next'
-import {initReatI18next} from 'react-i18next'
+import {initReactI18next} from 'react-i18next'
 import fr from './translations/fr.json'
 import en from './translations/en.json'
 
-const ressources = {
+const resources = {
     fr,
     en
 }
 
-i18n.use(initReatI18next).init({
+i18n.use(initReactI18next).init({
     lng: 'fr',
     fallbackLng: 'en',
-    ressources,
+    resources,
 
     interpolation:{
         escapeValue:false,

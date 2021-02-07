@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import styled from "styled-components"
+import {useTranslation} from 'react-i18next';
 
 
 
@@ -22,7 +23,7 @@ const testClick = (e, cart) => {
 
 
 const ProductList = props => {
-
+    const {t, i18n} = useTranslation()
     let [qty, setQty] = useState(props.qty)
 
     const incrementQty = () => {
@@ -44,7 +45,7 @@ const ProductList = props => {
             <Column>{props.price}€</Column>
             <Column>{props.price * props.qty}€</Column>
             <Column>
-                <button onClick={testClick}>Supprimer</button>
+                <button onClick={testClick}>{i18n.t('productcart.supprimer')}</button>
             </Column>
         </tr>
     );

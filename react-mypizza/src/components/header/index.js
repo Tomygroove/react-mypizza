@@ -8,22 +8,30 @@ import {useDispatch} from 'react-redux'
 import bgimg from "../../assets/images/cart.PNG";
 import {FaBars} from 'react-icons/fa'
 
+import {useTranslation} from 'react-i18next'
+
 // const cartCount = useState(0)
 
 const Header = () => {
+    const {t, i18n} = useTranslation()
     return (
         <>
             <HeaderContainer>
                 <TitleLink to="/pizzas">My Pizza</TitleLink>
                 {/* <Bars /> */}
                 <NavMenu>
-                    <NavLink to="/pizzas">Liste de Pizzas</NavLink>
-                    <NavLink to="/home">Mon configurateur</NavLink>
-                    <NavLink to="/cart">Mon panier</NavLink>
+                    <NavLink to="/pizzas">{i18n.t('header.list')}</NavLink>
+                    <NavLink to="/home">{i18n.t('header.configurator')}</NavLink>
+                    <NavLink to="/cart">{i18n.t('header.panier')}</NavLink>
                 </NavMenu>
                 {/* <LogoutBtn> */}
                     {/* <LogoutBtnLink to="/home">OUi</LogoutBtnLink> */}
                     <Logout />
+                    <div>
+                        <button onClick={() => i18n.changeLanguage('fr')}>fr</button>
+                        <button onClick={() => i18n.changeLanguage('en')}>en</button>
+                    </div>
+                    
                 {/* </LogoutBtn> */}
             </HeaderContainer>
         </>

@@ -1,27 +1,39 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import {useHistory} from 'react-router-dom'
+import {useTranslation} from 'react-i18next'
 
 const Signin = ({submit}) => {
+    const {t, i18n} = useTranslation()
     const [formState, setFormState] = useState({email: '', password: ''})
     const[errorMessage, setErrorMessage] = useState('')
     const history = useHistory()
 
     return (
       <Container>
+        <LangContainer>
+          <div>
+            <button onClick={() => i18n.changeLanguage('fr')}>fr</button>
+            <button onClick={() => i18n.changeLanguage('en')}>en</button>
+          </div>
+        </LangContainer>
       <Title>My Pizza</Title>
         <StyledForm onSubmit={(e) => submit(e, formState, setErrorMessage, history)}>
-            <StyledSpan>Se Connecter</StyledSpan>
+            <StyledSpan>{i18n.t('login.titre')}</StyledSpan>
             <SigninInput onChange={e => setFormState({ ...formState, email: e.target.value})} type='email' placeholder='Email'></SigninInput>
-            <SigninInput onChange={e => setFormState({ ...formState, password: e.target.value})} type='password' placeholder='Mot de passe'></SigninInput>
+            <SigninInput onChange={e => setFormState({ ...formState, password: e.target.value})} type='password' placeholder={t('login.mdp')}></SigninInput>
             <StyledSpan>{errorMessage}</StyledSpan>
-            <SigninSubmit type='Submit' value='Connexion'></SigninSubmit>
+            <SigninSubmit type='Submit' value={t('login.submit')}></SigninSubmit>
         </StyledForm>
         </Container>
     );
 };
 
+const LangContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
 
+`
 
 const Container = styled.div`
     width:100%;
