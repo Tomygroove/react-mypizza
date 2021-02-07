@@ -5,7 +5,6 @@ import {store} from './config/store'
 import axios from 'axios'
 import firebase from './firebase';
 import notification from "./assets/images/notification.png"
-
 function App() {
   
   React.useEffect(()=>{
@@ -13,17 +12,17 @@ function App() {
   msg.requestPermission().then(()=>{
     return msg.getToken();
   }).then((data)=>{
-    console.log("token",data)
-
+    
     const param = JSON.stringify({
       "to": data,
      "notification": {
           "title": "React-mypizza",
           "body": "vous pouvez maintenant customiser votre pizza",
           "click_action": "http://localhost:3000/",
-          "icon": "http://localhost:3000/icon.png"
+          //"icon": "http://localhost:3000/icon.png"
       }
-  })
+    
+    })
 
 
   const config = {
@@ -36,15 +35,12 @@ function App() {
     data:param,
   }
 
-  axios(config).then(function (response) {
-    //console.log(JSON.stringify(response.data));
-  }).catch(function (error) {
-    //console.log(error);
-  });
+  if( data ){
+    axios(config).then(function (response) {}).catch(function (error) {});
+   console.log( data )
+  }
 
-  }).catch(()=>{ 
-    ///console.log( "error")
-  })
+  }).catch(()=>{})
 
   })
   
