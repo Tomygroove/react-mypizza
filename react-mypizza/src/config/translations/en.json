@@ -1,0 +1,45 @@
+{
+    "translation": {
+        "header": {
+            "list" : "list of pizzas",
+            "configurator": "My configurator",
+            "panier": "shopping cart",
+            "logout": "Logout",
+            "login": "Login"
+        },
+        "pizzalist":{
+            "search" : "Search ..."
+        },
+        "configurateurform":{
+            "selectsize":{
+                "title": "1. I choose my size"
+            },
+            "selectbase":{
+                "title": "2. I choose my base"
+            },
+            "selecttopping":{
+                "title": "3. I choose my topping"
+            },
+            "configurator":{
+                "taille": "Size",
+                "ingredients": "Topping",
+                "nom" : "Name of the pizza",
+                "ajout": "Add to cart "
+            }
+        },
+        "cart":{
+            "titre":"Shopping cart",
+            "achat":"Buy now",
+            "retourList": "< Go back to shopping",
+            "emptyMsg": "Your cart is empty ..."
+        },
+        "productcart":{
+            "supprimer": "delete"
+        },
+        "login":{
+            "titre": "Login",
+            "submit": "Login",
+            "mdp": "Password"
+        }
+    }
+}

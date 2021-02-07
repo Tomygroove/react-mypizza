@@ -5,27 +5,39 @@ import {connect, useSelector, useDispatch} from 'react-redux'
 import bgimg from "../../assets/images/cart.PNG";
 import { Link } from 'react-router-dom'
 import Pagination from '../Pagination'
+import {useTranslation} from 'react-i18next'
 
 
 
 const PizzaList = ({pizzas, fetchPizzas}) => {
-
+    const {t, i18n} = useTranslation()
     const [searchPizza, setSearchPizza] = useState('')
     const [cartCount, setCartCount] = useState(0)
     const [currentPage, setCurrentPage] = useState(1)
     const [listsPerPage, setListsPerPage] = useState(4)
-
+    const [totalQty, setTotalQty] = useState(0);
    
     const dispatch = useDispatch()
     const addToCartBtn = (id) => {
         dispatch(addToCart(id))
         setCartCount(cartCount+1)
     }
+    
     useEffect(() => {
         fetchPizzas()
     }, [])
-    const cart = useSelector(state => state.shopCart.cart)
 
+    const cart = useSelector(state => state.shopCart.cart)
+    useEffect(() => {
+        let total = 0;
+        for (var i = 0; i < cart.length; i++) {
+            total = total + cart[i].qty
+            setTotalQty(total)
+        }
+    }, 0)
+   
+  
+    
 
     const indexOfLastList = currentPage * listsPerPage
     const indexOfFirstList = indexOfLastList - listsPerPage
@@ -40,9 +52,9 @@ const PizzaList = ({pizzas, fetchPizzas}) => {
             <WrapperCart>
             <StyledLink to={`/cart`}>
                 <Image></Image>
-                <Counter>{cart.length}</Counter>
+                <Counter>{totalQty + cartCount}</Counter>
             </StyledLink>
-            <StyledInput type="text" placeholder="Search..." onChange={event => {setSearchPizza(event.target.value)}}></StyledInput>
+            <StyledInput type="text" placeholder={t('pizzalist.search')} onChange={event => {setSearchPizza(event.target.value)}}></StyledInput>
             </WrapperCart>
         
             {currentList.filter((pizza) => {
@@ -141,7 +153,7 @@ color: #d34836;
 position: relative;
 top: 25px;
 max-width: 105px;
-left: 30px
+left: 30px;
 `
 
 const Wrapper = styled.div`

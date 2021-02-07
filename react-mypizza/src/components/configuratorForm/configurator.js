@@ -5,9 +5,10 @@ import {useDispatch, useSelector} from 'react-redux'
 import {Nextstep, DeleteIngredients} from '../../actions/stepper'
 import axios from 'axios'
 import {BsFillBucketFill } from 'react-icons/bs'
+import {useTranslation} from 'react-i18next'
 
 const ConfiguratorRecap = () => {
-
+    const {t, i18n} = useTranslation()
     const dispatch = useDispatch()
     const SizeBasket = useSelector(state=>state.step.SizeBasket)
     const BaseListe = useSelector(state=>state.step.BaseListi)
@@ -29,6 +30,7 @@ const ConfiguratorRecap = () => {
 
     
      const AddPizza = (e)=>{
+        
          e.preventDefault();
         // List of ingrefients select : IngredientsListeBasket
         // Base Value: BaseListe
@@ -95,7 +97,7 @@ const ConfiguratorRecap = () => {
                 <Recap>
                     <Row>
                         <Etape_New>
-                            <Label_new>Taille</Label_new>
+                            <Label_new>{i18n.t('configurateurform.configurator.taille')}</Label_new>
                                 <Recap_ul>
                                     <li>{SizeBasket}</li>
                                 </Recap_ul>
@@ -111,7 +113,7 @@ const ConfiguratorRecap = () => {
                     </Row>
                     <Row>
                     <Etape_New>
-                        <Label_new>Ingredients choisis</Label_new>
+                        <Label_new>{i18n.t('configurateurform.configurator.ingredients')}</Label_new>
                             <IngredientsChoisi>
                                 <Recap_ul >
                                     {
@@ -127,13 +129,13 @@ const ConfiguratorRecap = () => {
                                 </Row>
                                 <Row>
                                      <Etape_New>
-                                     <Label_new>Nom de la pizza</Label_new>
+                                     <Label_new>{i18n.t('configurateurform.configurator.nom')}</Label_new>
                                      <br></br>
                                          <PizzaName type="text" name="name" onChange={e=>SetNewPizza({...NewPizza,name:e.target.value})}></PizzaName>
                                      </Etape_New>
                                 </Row>
                                 <Row>
-                                    <CreateButton type="submit">Ajouter au panier <BsFillBucketFill/></CreateButton>
+                                    <CreateButton type="submit">{i18n.t('configurateurform.configurator.ajout')}<BsFillBucketFill/></CreateButton>
                                 </Row>
                             {
                                 !error?null:

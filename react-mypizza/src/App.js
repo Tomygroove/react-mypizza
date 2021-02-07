@@ -2,8 +2,16 @@ import React, { useState } from 'react';
 import {Provider} from 'react-redux'
 import Routes from './config/router'
 import {store} from './config/store'
+import './config/translations'
+
 import axios from 'axios'
 import firebase from './firebase';
+<<<<<<< HEAD
+=======
+import notification from "./assets/images/notification.png"
+
+
+>>>>>>> c950e0247da3f2d801a0905a7389dba0ac22dc48
 function App() {
   
   React.useEffect(()=>{

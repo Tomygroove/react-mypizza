@@ -9,38 +9,39 @@ import storage from 'local-storage-fallback'
 import toggleImage from '../../assets/images/themetoggle.png'
 
 
-const getInitialTheme = () => {
-    const savedTheme = storage.getItem('theme')
-    return savedTheme ? JSON.parse(savedTheme) : { mode: 'dark'}
-}
+import {useTranslation} from 'react-i18next'
 
 const Header = () => {
-
+    const {t, i18n} = useTranslation()
+    
+    const getInitialTheme = () => {
+        const savedTheme = storage.getItem('theme')
+        return savedTheme ? JSON.parse(savedTheme) : { mode: 'dark'}
+    }
     const [theme, setTheme] = useState(getInitialTheme);
-
+    
     useEffect(() => {
         storage.setItem('theme', JSON.stringify(theme))
     }, [theme])
-
     
+
     return (
         <>
           <ThemeProvider theme={theme}>
           <GlobalStyle/>
             <HeaderContainer>
                 <TitleLink to="/pizzas">My Pizza</TitleLink>
-                {/* <Bars /> */}
                 <NavMenu>
-                    <NavLink to="/pizzas">Liste de Pizzas</NavLink>
-                    <NavLink to="/home">Mon configurateur</NavLink>
-                    <NavLink to="/cart">Mon panier</NavLink>
+                    <NavLink to="/pizzas">{i18n.t('header.list')}</NavLink>
+                    <NavLink to="/home">{i18n.t('header.configurator')}</NavLink>
+                    <NavLink to="/cart">{i18n.t('header.panier')}</NavLink>
                 </NavMenu>
                 <ToogleTheme onClick={e => setTheme(theme.mode === 'dark' ? {mode: 'light'} : {mode: 'dark'})}/>
-               
-                {/* <LogoutBtn> */}
-                    {/* <LogoutBtnLink to="/home">OUi</LogoutBtnLink> */}
                     <Logout />
-                {/* </LogoutBtn> */}
+                    <div>
+                        <button onClick={() => i18n.changeLanguage('fr')}>fr</button>
+                        <button onClick={() => i18n.changeLanguage('en')}>en</button>
+                    </div>
             </HeaderContainer>
             </ThemeProvider>
         </>
@@ -54,7 +55,7 @@ body {
   color: ${props => 
     props.theme.mode === 'dark' ? '#c7c7cd' : '#222'};
   }
-}
+
 `
 
 const ToogleTheme = styled.p `
@@ -110,9 +111,10 @@ const NavMenu = styled.div`
     display: flex;
     align-items: center;
     margin-right: -24px;
-    // @media screen and (max-width: 768px) {
-    //     display: none;
-    // }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4314c3f28166f3907146403f944991382d352cc6
 `
 
 const NavLink = styled(Link)`
