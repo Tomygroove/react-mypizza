@@ -6,8 +6,6 @@ import {Nextstep, DeleteIngredients} from '../../actions/stepper'
 import axios from 'axios'
 import {BsFillBucketFill } from 'react-icons/bs'
 import {useTranslation} from 'react-i18next'
-import ClipLoader from "react-spinners/ClipLoader";
-import { css } from "@emotion/core";
 
 const ConfiguratorRecap = () => {
     const {t, i18n} = useTranslation()

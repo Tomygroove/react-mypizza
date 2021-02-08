@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import Pagination from '../Pagination'
 import {useTranslation} from 'react-i18next'
 import ClipLoader from "react-spinners/ClipLoader";
-import { css } from "@emotion/core";
+import { css } from "@emotion/react";
 
 
 
