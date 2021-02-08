@@ -82,7 +82,7 @@ const ConfigTaille = styled.ul`
     justify-content: center;
     `
 const Config_slide_title = styled.li`
-    color: #6e626c;
+    color: #d34836;
     font-size: 20px;
     font-weight: 500;
     margin-bottom: 30px;

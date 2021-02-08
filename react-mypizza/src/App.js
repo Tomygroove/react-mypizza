@@ -3,11 +3,9 @@ import {Provider} from 'react-redux'
 import Routes from './config/router'
 import {store} from './config/store'
 import './config/translations'
-
 import axios from 'axios'
 import firebase from './firebase';
 import notification from "./assets/images/notification.png"
-
 function App() {
   
   React.useEffect(()=>{
@@ -22,7 +20,6 @@ function App() {
           "title": "React-mypizza",
           "body": "vous pouvez maintenant customiser votre pizza",
           "click_action": "http://localhost:3000/",
-          //"icon": "http://localhost:3000/icon.png"
       }
     
     })

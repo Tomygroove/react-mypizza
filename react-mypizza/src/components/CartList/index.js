@@ -6,7 +6,7 @@ import StripeCheckout from 'react-stripe-checkout'
 import { NavLink as Link} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
 import ClipLoader from "react-spinners/ClipLoader";
-import { css } from "@emotion/core";
+import { css } from "@emotion/react";
 
 const CartList = props => {
     const {t, i18n} = useTranslation()
