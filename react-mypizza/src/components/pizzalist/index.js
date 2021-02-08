@@ -6,6 +6,8 @@ import bgimg from "../../assets/images/cart.PNG";
 import { Link } from 'react-router-dom'
 import Pagination from '../Pagination'
 import {useTranslation} from 'react-i18next'
+import ClipLoader from "react-spinners/ClipLoader";
+import { css } from "@emotion/react";
 
 
 
@@ -16,6 +18,8 @@ const PizzaList = ({pizzas, fetchPizzas}) => {
     const [currentPage, setCurrentPage] = useState(1)
     const [listsPerPage, setListsPerPage] = useState(4)
     const [totalQty, setTotalQty] = useState(0);
+
+    const [isLoading, setLoading] = useState(true)
    
     const dispatch = useDispatch()
     const addToCartBtn = (id) => {
@@ -24,7 +28,10 @@ const PizzaList = ({pizzas, fetchPizzas}) => {
     }
     
     useEffect(() => {
-        fetchPizzas()
+        setTimeout(() => {
+            fetchPizzas()
+            setLoading(false)
+        }, 1500)
     }, [])
 
     const cart = useSelector(state => state.shopCart.cart)
@@ -44,9 +51,17 @@ const PizzaList = ({pizzas, fetchPizzas}) => {
     const currentList = pizzas.slice(indexOfFirstList, indexOfLastList)
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+    if(isLoading) {
+        return(
+            <ClipLoader color={"#D34836"} loading={isLoading} css={override} size={50}/>
+            )
+    }
    
 
     return (
+        <>
+        
         <Wrapper>
             <Title>My Pizza</Title>
             <WrapperCart>
@@ -55,8 +70,9 @@ const PizzaList = ({pizzas, fetchPizzas}) => {
                 <Counter>{totalQty + cartCount}</Counter>
             </StyledLink>
             <StyledInput type="text" placeholder={t('pizzalist.search')} onChange={event => {setSearchPizza(event.target.value)}}></StyledInput>
+            
             </WrapperCart>
-        
+            
             {currentList.filter((pizza) => {
                 if(searchPizza == "") {
                     return pizza
@@ -74,6 +90,8 @@ const PizzaList = ({pizzas, fetchPizzas}) => {
                 }
 
                 return (
+                    <>
+                    
                     <ListContainer key={pizza.id}>
                     
                     <WrapperImg src={pizza.images[0].src} />    
@@ -89,11 +107,12 @@ const PizzaList = ({pizzas, fetchPizzas}) => {
                     
                     </ListContainer>
                 
-                
+                </>
                 ) 
             })}
             <Pagination listPerPage={listsPerPage} totalPage={pizzas.length} paginate={paginate}></Pagination>
         </Wrapper>
+    </>
     );
 };
 
@@ -115,6 +134,12 @@ max-width: 100%;
 height: 130px;
 align-self: center;
 `
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+`;
+
 const StyledInput = styled.input `
 font-family: Comic Sans MS, Comic Sans, cursive;
 font-weight: 400;
@@ -123,6 +148,9 @@ color: #666;
 border: 2px solid #d34836;
 background: none;
 line-height: 1.5;
+&:focus{
+    border-color: #d34836;
+}
 `
 const Title = styled.h1`
   text-align: center;

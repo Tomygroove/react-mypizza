@@ -5,10 +5,6 @@ import {removeFromCart, incrementtQty, decrementQty} from '../../actions/cart'
 import {connect, useSelector, useDispatch} from 'react-redux'
 
 
-
-
-
-
 const ProductList = props => {
     let [qty, setQty] = useState(props.qty)
     let [total, setTotal] = useState(props.price * props.qty)
@@ -30,6 +26,7 @@ const ProductList = props => {
             setQty(qty--);
         }
     }
+
     return (
         <ProductContainer>
             <ImgContainer>
@@ -56,7 +53,7 @@ const ProductList = props => {
 const ProductContainer = styled.div`
     width: 70%;
     height: 25vh;
-    background: #dededf;
+    background: #191919;
     margin: 2.5vh 0;
     border: 2px solid #d34836;
 
@@ -98,8 +95,13 @@ const Desc = styled.p`
 `
 const StyledBtn = styled.button`
     margin : 0 0.5vw;
-    color: #d34836;
+    color: white;
     border: 1px solid #d34836;
+    background: none;
+    &:hover{
+        background: #d34836;
+        color:white;
+    }
 `
 const DescPrice = styled.p`
     font-family: Comic Sans MS, Comic Sans, cursive;
